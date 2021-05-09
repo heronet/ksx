@@ -1,0 +1,20 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap
+}
+.card-container > mat-card {
+    flex: 1 0 21%;
+    margin: 5px;
+    text-align: center;
+    background-color: #3500d3;
+    color: #fff;
+    cursor: pointer;
+}
+.card-container > mat-card:hover {
+    background-color: #f44336;
+}
+
+.ad {
+    padding: 0;
+    margin: 10px;
+}
