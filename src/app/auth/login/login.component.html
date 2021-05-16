@@ -3,7 +3,8 @@
         <p>Login</p>
         <input type="email" name="email" id="email" placeholder="Email" required email ngModel #email="ngModel">
         <input type="password" name="password" placeholder="Password" required ngModel minlength="4">
-        <button type="submit" [disabled]="form.invalid">Login</button>
+        <button type="submit" [disabled]="form.invalid" *ngIf="!loading">Login</button>
+        <button *ngIf="loading" type="button" [disabled]="true" style="padding: 2px; background-color: #f44336;"><mat-spinner diameter="30"></mat-spinner></button>
 
         
         <ul *ngIf="email.invalid && (email.dirty || email.touched)" class="validation" style="list-style: none;">
@@ -11,6 +12,7 @@
                 A valid Email is required.
             </li>
         </ul>
+        <span class="validation"  *ngIf="server_error">{{server_error}}</span>
 
         <div><span>Not a user? </span><a routerLink="/register">register</a></div>
 

@@ -13,6 +13,9 @@ import { DashboardComponent } from './core/dashboard/dashboard.component';
 import { SidenavComponent } from './core/sidenav/sidenav.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AllTestsComponent } from './core/all-tests/all-tests.component';
+import { TestBoardComponent } from './core/all-tests/test-board/test-board.component';
+import { CreateTestComponent } from './core/all-tests/create-test/create-test.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { RegisterComponent } from './auth/register/register.component';
     DashboardComponent,
     SidenavComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AllTestsComponent,
+    TestBoardComponent,
+    CreateTestComponent
   ],
   imports: [
     BrowserModule,

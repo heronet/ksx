@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,17 +10,21 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
   email_valid = false;
   server_errors: any;
+  loading = false;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    
   }
   onSubmit(form: NgForm) {
+    this.loading = true;
     const email = form.value.email.trim().toLowerCase()
     const username: string = form.value.username.trim()
     const password = form.value.password.trim()
+    const phone = form.value.phone.toString()
 
     for(let i = 0; i != email.length; ++i) {
       if(email[i] === '@')
@@ -30,13 +35,16 @@ export class RegisterComponent implements OnInit {
     const user: Partial<User> = {
       email,
       username,
-      password
+      password,
+      phone
     };
 
     this.authService.register(user).subscribe(res => {
-
+      this.loading = false;
+      this.server_errors = null;
     }, res => {
       this.server_errors = res.error.errors;
+      this.loading = false;
     })
   }
 

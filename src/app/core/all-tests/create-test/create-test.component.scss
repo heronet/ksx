@@ -1,13 +1,19 @@
-.form {
-  margin: 10vw auto;
-  padding: 40px;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  user-select: none;
-  border: 1px #240090 solid;
+.container {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
 }
-.form>* {
+.form {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    border: 1px #240090 solid;
+    width: 90%;
+}
+
+.form> * {
   padding: 10px;
   border-radius: 5px;
   border: none;
@@ -23,35 +29,22 @@
   background-color: #240090;
   cursor: pointer;
 }
+
 .form>button:hover {
   background-color: #f44336;
 }
 
 .form>button:disabled {
-  color: #fff;
   background-color: royalblue;
   cursor: auto;
 }
-
-.form>p {
-  color: #fff;
-  text-align: center;
-  font-size: 90px;
-  margin-bottom: 50px;
-  font-family: cursive;
+label {
+    margin-left: 5px;
+}
+.question{
+  
 }
 
-.form>div {
-  text-align: center;
-  font-size: 19px;
-  color: #fff;
-  font-family: cursive;
-}
-
-a {
-  text-decoration: underline;
-  color: cornflowerblue;
-}
 
 form>.validation {
   color: #f44336;
@@ -59,8 +52,4 @@ form>.validation {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin: 5px;
   padding: 5px;
-  list-style: none;
-}
-mat-spinner {
-  margin: 0 auto;
 }

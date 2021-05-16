@@ -30,6 +30,7 @@
 
 .form>button:disabled {
   background-color: royalblue;
+  cursor: auto;
 }
 
 .form>p {
@@ -58,4 +59,7 @@ form>.validation {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin: 5px;
   padding: 5px;
+}
+mat-spinner {
+  margin: 0 auto;
 }

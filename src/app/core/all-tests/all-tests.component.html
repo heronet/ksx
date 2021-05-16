@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="search">
+        <form class="form">
+            <input placeholder="Model ID" type="text">
+            <input type="date">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="list" *ngIf="!isLoading">
+        <div class="list-item" *ngFor="let exam of exams" [routerLink]="['/all-tests', exam.id]">
+            <span>{{exam.title}}</span>|<span>Subject: {{exam.subject}}</span>|<span class="tag">Paid</span>
+            <p>{{exam.createdAt | date: 'medium'}}</p>
+            <p>Attendees: {{exam.attendees}}</p>
+        </div>
+    </div>
+    <div class="list" *ngIf="isLoading">
+        <mat-spinner style="margin: 10px auto;"></mat-spinner>
+    </div>
+</div>

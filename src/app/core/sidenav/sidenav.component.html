@@ -1,6 +1,9 @@
-<mat-nav-list>
-    <a mat-list-item routerLink="/login"><mat-icon>fingerprint</mat-icon><span>Login</span></a>
-    <a mat-list-item routerLink="/register"><mat-icon>account_circle</mat-icon><span>SignUp</span></a>
-    <a mat-list-item routerLink=""><mat-icon>description</mat-icon><span>All Tests</span></a>
+<mat-nav-list (click)="sidenavItemClicked.emit()">
+    <a mat-list-item routerLink=""><mat-icon>home</mat-icon><span>Home</span></a>
+    <a mat-list-item routerLink="/all-tests"><mat-icon>description</mat-icon><span>All Tests</span></a>
+    <a mat-list-item routerLink="/all-tests/create" *ngIf="userIsAuthenticated"><mat-icon>add_task</mat-icon><span>Create Test</span></a>
     <a mat-list-item routerLink=""><mat-icon>trending_up</mat-icon><span>Job Questions</span></a>
+    <a mat-list-item routerLink="/login" *ngIf="!userIsAuthenticated"><mat-icon>fingerprint</mat-icon><span>Login</span></a>
+    <a mat-list-item (click)="onLogout()" *ngIf="userIsAuthenticated"><mat-icon>logout</mat-icon><span>Logout</span></a>
+    <a mat-list-item routerLink="/register" *ngIf="!userIsAuthenticated"><mat-icon>account_circle</mat-icon><span>SignUp</span></a>
 </mat-nav-list>
