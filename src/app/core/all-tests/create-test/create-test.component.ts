@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Exam, Question } from 'src/app/models/Exam';
+import { ExamService } from 'src/app/services/exam.service';
 
 @Component({
   selector: 'app-create-test',
@@ -7,8 +10,10 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./create-test.component.scss']
 })
 export class CreateTestComponent implements OnInit {
+  // UI Stuff
+  isLoading = false;
+  // LogicStuff
   subjects = [
-    "Select a subject",
     "English",
     "Physics",
     "Chemistry",
@@ -32,26 +37,68 @@ export class CreateTestComponent implements OnInit {
     0 : {}
   };
   questions_keys = [];
+  ca_indexes = [1, 2, 3, 4];
 
-  constructor() { }
+  constructor(private examService: ExamService, private router: Router) { }
 
   ngOnInit(): void {
     this.duration_keys = Object.keys(this.durations);
     this.questions_keys = Object.keys(this.questions);
   }
   onSubmit(form: NgForm) {
-    
+    this.isLoading = true;
+    const exam = this.buildExam(form.value);
+    this.examService.createExam(exam).subscribe(res => {
+      this.isLoading = false;
+      this.router.navigateByUrl("all-tests");
+    }, err => {
+      this.isLoading = false;
+    })
   }
   addQuestion() {
     let index = this.questions_keys.length
     this.questions[index] = {};
     this.questions_keys = Object.keys(this.questions);
-    console.log(this.questions);
-    console.log(this.questions_keys);
-    
+  }
+  removeQuestion() {
+    let index = this.questions_keys.length - 1;
+    if(index >= 1) {
+      delete this.questions[index];
+      this.questions_keys = Object.keys(this.questions);
+    }
   }
   increaseOne(num: any): number {
     return Number(num) + 1;
+  }
+  buildExam(value: any) {
+    console.log(value);
+    
+    let title = value.title;
+    let duration = this.durations[value.duration];
+    let subject = value.subject;
+    let valid_questions: Partial<Question>[] = [];
+    this.questions_keys.forEach(index => {
+      const temp_question = this.questions[index];
+      const options: string[] = [
+        temp_question[0],
+        temp_question[1],
+        temp_question[2],
+        temp_question[3]
+      ];
+      const question: Partial<Question> =  {
+        title: temp_question.title,
+        correctAnswer: temp_question[temp_question.ca_index],
+        options: options
+      }
+      valid_questions.push(question);
+    });
+    const exam: Partial<Exam> = {
+        title,
+        duration,
+        subject,
+        questions: valid_questions
+    }
+    return exam;
   }
 
 }

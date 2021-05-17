@@ -16,6 +16,8 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.authService.authenticatedUser$.pipe(take(1)).subscribe(authData => {
+      console.log(authData);
+      
       if(authData) {
         request = request.clone({
           setHeaders: {

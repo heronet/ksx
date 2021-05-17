@@ -25,9 +25,7 @@ export class SidenavComponent implements OnInit {
       } else
         this.userIsAuthenticated = false;
     })
-    // let userData = JSON.parse(localStorage.getItem('authData')) as AuthData;
-    // if(userData != null)
-    this.userIsAuthenticated = this.authService.getAuthStatus();
+    // this.userIsAuthenticated = this.authService.getAuthStatus();
   }
   onLogout() {
     this.authService.logout();

@@ -1,24 +1,35 @@
 <div class="container">
     <form class="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
-        <input type="text" name="title" ngModel placeholder="Title">
-        <select [ngModel]="subjects[0]" name="subject" id="subject">
+        <input type="text" name="title" ngModel placeholder="Title" required>
+        <select ngModel name="subject" id="subject" required>
+            <option value="" disabled selected>Select a subject</option>
             <option *ngFor="let subject of subjects" [value]="subject">{{subject}}</option>
         </select>
-        <select [ngModel]="duration_keys[0]" name="duration" id="duration">
+        <select ngModel name="duration" id="duration" required>
+            <option value="" disabled selected>Select exam duration</option>
             <option *ngFor="let duration of duration_keys" [value]="duration">{{duration}}</option>
         </select>
-        <div class="questions">
-            <button (click)="addQuestion()" type="button">Add more Questions</button>
+        <div class="questions" style="padding: 0;">
+            <button (click)="addQuestion()" type="button" mat-raised-button color="primary">Add more questions</button>
+            <button (click)="removeQuestion()" type="button" mat-raised-button color="warn">Remove Last question</button>
             <div class="question" *ngFor="let number of questions_keys;">
-                <input ngModel type="text" name="{{'question' + number}}" [(ngModel)]="questions[number]['title']" [placeholder]="'Question ' + increaseOne(number)">
+                <input ngModel type="text" name="{{'question' + number}}" [(ngModel)]="questions[number]['title']" [placeholder]="'Question ' + increaseOne(number)" required>
                 <div class="options">
-                    <input type="text" [(ngModel)]="questions[number][0]"  placeholder="Option 1" name="option{{number}},1">
-                    <input type="text" [(ngModel)]="questions[number][1]"  placeholder="Option 2" name="option{{number}},2">
-                    <input type="text" [(ngModel)]="questions[number][2]"  placeholder="Option 3" name="option{{number}},3">
-                    <input type="text" [(ngModel)]="questions[number][3]"  placeholder="Option 4" name="option{{number}},4">
+                    <input type="text" [(ngModel)]="questions[number][0]"  placeholder="Option 1" name="option{{number}},1" required>
+                    <input type="text" [(ngModel)]="questions[number][1]"  placeholder="Option 2" name="option{{number}},2" required>
+                    <input type="text" [(ngModel)]="questions[number][2]"  placeholder="Option 3" name="option{{number}},3" required>
+                    <input type="text" [(ngModel)]="questions[number][3]"  placeholder="Option 4" name="option{{number}},4" required>
+                </div>
+                <div class="correct">
+                    <label>Select correct option: </label>
+                    <select [(ngModel)]="questions[number]['ca_index']" [name]="'ca_number' + number" [id]="'ca_number' + number" required>
+                        <option *ngFor="let index of ca_indexes" [value]="index">{{index}}</option>
+                    </select>
                 </div>
             </div>
         </div>
-        <button type="submit">Create</button>
+        <button type="submit" [disabled]="f.invalid" *ngIf="!isLoading">Create</button>
+        <mat-spinner style="margin: 5px auto; padding: 0;" diameter="40" *ngIf="isLoading"></mat-spinner>
+        
     </form>
 </div>

@@ -14,5 +14,5 @@ export interface Exam {
   creator: string;
   createdAt: Date;
   duration: number;
-  questions: Question[];
+  questions: Partial<Question>[];
 }
