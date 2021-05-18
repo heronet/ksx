@@ -2,7 +2,9 @@ export interface Question {
   id: string;
   title: string;
   options: string[];
+  marks: number;
   correctAnswer: string;
+  providedAnswer: string;
 }
 
 export interface Exam {
@@ -15,4 +17,8 @@ export interface Exam {
   createdAt: Date;
   duration: number;
   questions: Partial<Question>[];
+  totalMarks: number;
+  marksObtained: number;
+  newSubmission: boolean;
+  participated: boolean;
 }

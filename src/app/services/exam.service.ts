@@ -14,7 +14,13 @@ export class ExamService {
   getAllExam() {
     return this.http.get<Partial<Exam>[]>(`${this.BASE_URL}/exam/all`);
   }
+  getExam(id: string) {
+    return this.http.get<Partial<Exam>>(`${this.BASE_URL}/exam/${id}`);
+  }
   createExam(exam: Partial<Exam>) {
     return this.http.post(`${this.BASE_URL}/exam/create`, exam);
+  }
+  submitExam(exam: Partial<Exam>) {
+    return this.http.post<Partial<Exam>>(`${this.BASE_URL}/exam/submit`, exam);
   }
 }

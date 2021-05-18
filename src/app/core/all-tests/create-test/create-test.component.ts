@@ -71,8 +71,6 @@ export class CreateTestComponent implements OnInit {
     return Number(num) + 1;
   }
   buildExam(value: any) {
-    console.log(value);
-    
     let title = value.title;
     let duration = this.durations[value.duration];
     let subject = value.subject;
@@ -88,7 +86,8 @@ export class CreateTestComponent implements OnInit {
       const question: Partial<Question> =  {
         title: temp_question.title,
         correctAnswer: temp_question[temp_question.ca_index],
-        options: options
+        options: options,
+        marks: temp_question.marks
       }
       valid_questions.push(question);
     });

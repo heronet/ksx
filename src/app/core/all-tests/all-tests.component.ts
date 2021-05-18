@@ -9,7 +9,7 @@ import { ExamService } from 'src/app/services/exam.service';
 })
 export class AllTestsComponent implements OnInit {
   isLoading: boolean;
-  exams: Partial<Exam>[];
+  exams: Partial<Exam>[] = [];
 
   constructor(private examService: ExamService) { }
 

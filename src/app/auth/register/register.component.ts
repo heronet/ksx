@@ -1,5 +1,7 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { AuthService } from 'src/app/services/auth.service';
@@ -14,7 +16,11 @@ export class RegisterComponent implements OnInit {
   server_errors: any;
   loading = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService, 
+    private router: Router,
+    private location: Location
+  ) { }
 
   ngOnInit(): void {
     
@@ -42,10 +48,17 @@ export class RegisterComponent implements OnInit {
     this.authService.register(user).subscribe(res => {
       this.loading = false;
       this.server_errors = null;
+      this.navigate();
     }, res => {
       this.server_errors = res.error.errors;
       this.loading = false;
     })
+  }
+  navigate() {
+    if(window.history.length > 2)
+      this.location.back(); // Only call back if uses came from another page of THIS site.
+    else
+    this.router.navigateByUrl("/all-tests"); // Go home if came from another website
   }
 
 }

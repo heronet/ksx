@@ -20,10 +20,11 @@
                     <input type="text" [(ngModel)]="questions[number][2]"  placeholder="Option 3" name="option{{number}},3" required>
                     <input type="text" [(ngModel)]="questions[number][3]"  placeholder="Option 4" name="option{{number}},4" required>
                 </div>
-                <div class="correct">
+                <div class="question-extras">
+                    <input type="number" name="mark{{number}}" [(ngModel)]="questions[number]['marks']" placeholder="Marks" required>
                     <label>Select correct option: </label>
                     <select [(ngModel)]="questions[number]['ca_index']" [name]="'ca_number' + number" [id]="'ca_number' + number" required>
-                        <option *ngFor="let index of ca_indexes" [value]="index">{{index}}</option>
+                        <option *ngFor="let index of ca_indexes" [value]="index - 1">{{index}}</option>
                     </select>
                 </div>
             </div>
