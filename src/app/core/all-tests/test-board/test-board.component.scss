@@ -31,15 +31,7 @@
 .options {
     display: flex;
     flex-wrap: wrap;
-    .options>.option {
-      margin: 10px;
-      margin-top: 0;
-      padding: 5px;
-      border: 1px royalblue solid;
-      border-radius: 5px;
-      cursor: pointer;
-      min-width: 0;
-    }
+    
 }
 .options>.option {
     margin: 10px;

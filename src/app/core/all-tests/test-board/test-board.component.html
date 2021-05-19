@@ -27,6 +27,7 @@
                         [ngClass]="[(question.correctAnswer === option ) ? 'opt-correct': '', question.providedAnswer === option ? 'incorrect': '']"
                     >{{option}}</p>
                 </div>
+                <p style="margin-top: 0; margin-bottom: 20px;">Score: {{(question.providedAnswer === question.correctAnswer) ? (question.marks + '/' + question.marks): ('0/' + question.marks)}}</p>
             </div>
         </div>
     </div>
