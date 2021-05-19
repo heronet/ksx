@@ -9,7 +9,7 @@
             <p mat-card-subtitle>Created By: {{exam.creator}} </p>
         </div>
         <button *ngIf="!examRunning && isAuthenticated && !examSubmitted" mat-raised-button color="primary" style="margin-top: 5px; width: 100%;" (click)="onStart()">Click to Start</button>
-        <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated">You have already completed this exam.</p>
+        <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated">You have already completed this exam with marks {{exam.marksObtained}}</p>
         <div class="questions" *ngIf="isAuthenticated && examRunning">
             <div class="question" *ngFor="let question of exam.questions; let i = index;">
                 <p>{{i + 1}}. {{question.title}}</p>

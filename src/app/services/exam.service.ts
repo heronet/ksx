@@ -11,8 +11,10 @@ export class ExamService {
 
   constructor(private http: HttpClient) { }
 
-  getAllExam() {
-    return this.http.get<Partial<Exam>[]>(`${this.BASE_URL}/exam/all`);
+  getAllExam(myRole: string | null = null) {
+    if(myRole == null)
+      return this.http.get<Partial<Exam>[]>(`${this.BASE_URL}/exam/all`);
+    return this.http.get<Partial<Exam>[]>(`${this.BASE_URL}/exam/all?myRole=${myRole}`);
   }
   getExam(id: string) {
     return this.http.get<Partial<Exam>>(`${this.BASE_URL}/exam/${id}`);

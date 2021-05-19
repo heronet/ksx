@@ -1,9 +1,12 @@
 <div class="container">
     <div class="search">
-        <form class="form">
+        <form class="form" #f="ngForm">
             <input placeholder="Model ID" type="text">
             <input type="date">
-            <button type="submit">Search</button>
+            <select name="myRole" id="myRole" [ngModel]="myRoleKeys[0]">
+                <option *ngFor="let role of myRoleKeys" [value]="role">{{role}}</option>
+            </select>
+            <button type="submit" (click)="onSubmit(f)">Search</button>
         </form>
     </div>
 
@@ -11,6 +14,7 @@
         <div class="list-item" *ngFor="let exam of exams" [routerLink]="['/all-tests', exam.id]">
             <span>{{exam.title}}</span>|<span>Subject: {{exam.subject}}</span>|<span class="tag">Paid</span>
             <p>{{exam.createdAt | date: 'medium'}}</p>
+            <p *ngIf="showObtainedMarks">Marks Obtained: {{exam.marksObtained}}</p>
             <p>Attendees: {{exam.attendees}}</p>
             <p>Total Marks: {{exam.totalMarks}}</p>
         </div>
