@@ -12,20 +12,27 @@
         <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated">You have already completed this exam with marks {{exam.marksObtained}}</p>
         <div class="questions" *ngIf="isAuthenticated && examRunning">
             <div class="question" *ngFor="let question of exam.questions; let i = index;">
-                <p>{{i + 1}}. {{question.title}}</p>
+                <p [mathjax]="[question.title]">{{i + 1}}. \( {{ '{}' }} \)</p>
                 <div class="options">
-                    <p class="option" *ngFor="let option of question.options;" (click)="itemSelected(option, i)" [ngClass]="question.providedAnswer === option ? 'selected': ''">{{option}}</p>
+                    <p 
+                      class="option" 
+                      *ngFor="let option of question.options;"
+                      [mathjax]="[option]" 
+                      (click)="itemSelected(option, i)" 
+                      [ngClass]="question.providedAnswer === option ? 'selected': ''">\( {{ '{}' }} \)</p>
                 </div>
             </div>
         </div>
         <p class="marks" *ngIf="!examRunning && isAuthenticated &&  newSubmission">Your Score is: {{exam.marksObtained}}</p>
         <div class="questions" *ngIf="!examRunning && isAuthenticated &&  newSubmission">
             <div class="question" *ngFor="let question of exam.questions; let i = index;">
-                <p>{{i + 1}}. {{question.title}}</p>
+                <p [mathjax]="[question.title]">\( {{ '{}' }} \)</p>
                 <div class="options">
-                    <p class="option" *ngFor="let option of question.options;"  
-                        [ngClass]="[(question.correctAnswer === option ) ? 'opt-correct': '', question.providedAnswer === option ? 'incorrect': '']"
-                    >{{option}}</p>
+                    <p 
+                      class="option" *ngFor="let option of question.options;"
+                      [mathjax]="[option]" 
+                      [ngClass]="[(question.correctAnswer === option ) ? 'opt-correct': '', question.providedAnswer === option ? 'incorrect': '']"
+                    >\( {{ '{}' }} \)</p>
                 </div>
                 <p style="margin-top: 0; margin-bottom: 20px;">Score: {{(question.providedAnswer === question.correctAnswer) ? (question.marks + '/' + question.marks): ('0/' + question.marks)}}</p>
             </div>

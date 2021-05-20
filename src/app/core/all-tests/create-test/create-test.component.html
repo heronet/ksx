@@ -14,11 +14,41 @@
             <button (click)="removeQuestion()" type="button" mat-raised-button color="warn">Remove Last question</button>
             <div class="question" *ngFor="let number of questions_keys;">
                 <input type="text" name="{{'question' + number}}" [(ngModel)]="questions[number]['title']" [placeholder]="'Question ' + increaseOne(number)" required>
+                <span 
+                    [mathjax]="[questions[number]['title']]" 
+                    *ngIf="questions[number]['title']" 
+                    style="font-size: 20px; margin: 10px 0;">
+                    {{+number + 1}}. \( {{ '{}' }} \)
+                </span>
                 <div class="options">
                     <input type="text" [(ngModel)]="questions[number][0]"  placeholder="Option 1" name="option{{number}},1" required>
+                    <span 
+                        [mathjax]="[questions[number][0]]" 
+                        *ngIf="questions[number][0]" 
+                        style="font-size: 13px; margin: 5px 0;">
+                        1. \( {{ '{}' }} \)
+                    </span>
                     <input type="text" [(ngModel)]="questions[number][1]"  placeholder="Option 2" name="option{{number}},2" required>
+                    <span 
+                        [mathjax]="[questions[number][1]]" 
+                        *ngIf="questions[number][1]" 
+                        style="font-size: 13px; margin: 5px 0;">
+                        2. \( {{ '{}' }} \)
+                    </span>
                     <input type="text" [(ngModel)]="questions[number][2]"  placeholder="Option 3" name="option{{number}},3" required>
+                    <span 
+                        [mathjax]="[questions[number][2]]" 
+                        *ngIf="questions[number][2]" 
+                        style="font-size: 13px; margin: 5px 0;">
+                        3. \( {{ '{}' }} \)
+                    </span>
                     <input type="text" [(ngModel)]="questions[number][3]"  placeholder="Option 4" name="option{{number}},4" required>
+                    <span 
+                        [mathjax]="[questions[number][3]]" 
+                        *ngIf="questions[number][3]" 
+                        style="font-size: 13px; margin: 5px 0;">
+                        4. \( {{ '{}' }} \)
+                    </span>
                 </div>
                 <div class="question-extras">
                     <input type="number" name="mark{{number}}" [(ngModel)]="questions[number]['marks']" placeholder="Marks" required>

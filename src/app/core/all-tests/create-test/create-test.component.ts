@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Exam, Question } from 'src/app/models/Exam';
@@ -12,6 +12,7 @@ import { ExamService } from 'src/app/services/exam.service';
 export class CreateTestComponent implements OnInit {
   // UI Stuff
   isLoading = false;
+  
   // LogicStuff
   subjects = [
     "English",

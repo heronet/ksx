@@ -17,6 +17,7 @@ import { AllTestsComponent } from './core/all-tests/all-tests.component';
 import { TestBoardComponent } from './core/all-tests/test-board/test-board.component';
 import { CreateTestComponent } from './core/all-tests/create-test/create-test.component';
 import { TokenInterceptor } from './utils/token.interceptor';
+import { MathJaxModule } from 'ngx-mathjax';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { TokenInterceptor } from './utils/token.interceptor';
     RegisterComponent,
     AllTestsComponent,
     TestBoardComponent,
-    CreateTestComponent
+    CreateTestComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +38,12 @@ import { TokenInterceptor } from './utils/token.interceptor';
     BrowserAnimationsModule,
     FormsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    MathJaxModule.forRoot({
+      version: '2.7.5',
+      config: 'TeX-MML-AM_CHTML',
+      hostname: 'cdnjs.cloudflare.com'
+    })
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
