@@ -13,7 +13,7 @@
             <button (click)="addQuestion()" type="button" mat-raised-button color="primary">Add more questions</button>
             <button (click)="removeQuestion()" type="button" mat-raised-button color="warn">Remove Last question</button>
             <div class="question" *ngFor="let number of questions_keys;">
-                <input ngModel type="text" name="{{'question' + number}}" [(ngModel)]="questions[number]['title']" [placeholder]="'Question ' + increaseOne(number)" required>
+                <input type="text" name="{{'question' + number}}" [(ngModel)]="questions[number]['title']" [placeholder]="'Question ' + increaseOne(number)" required>
                 <div class="options">
                     <input type="text" [(ngModel)]="questions[number][0]"  placeholder="Option 1" name="option{{number}},1" required>
                     <input type="text" [(ngModel)]="questions[number][1]"  placeholder="Option 2" name="option{{number}},2" required>

@@ -2,21 +2,24 @@
     <mat-card class="ad"><button mat-raised-button color="primary" style="width: 100%; display: block;">View All Job Solution Questions</button></mat-card>
     <mat-card class="ad"><button mat-raised-button color="warn" style="width: 100%; display: block;" routerLink="/all-tests">View All Model Test</button></mat-card>
     <div class="card-container">
-        <mat-card>
+        <mat-card routerLink="/all-tests/create">
             <mat-card-title>Create Model Test</mat-card-title>
         </mat-card>
-        <mat-card>
+        <mat-card *ngIf="!userIsAuthenticated">
             <mat-card-title routerLink="/register">Sign Up</mat-card-title>
         </mat-card>
-        <mat-card routerLink="/login">
+        <mat-card routerLink="/login" *ngIf="!userIsAuthenticated">
             <mat-card-title>Login</mat-card-title>
         </mat-card>
-        <mat-card>
-            <mat-card-title>Participate Model Test</mat-card-title>
+        
+        <mat-card routerLink="/all-tests">
+            <mat-card-title>Participate in Model Test</mat-card-title>
         </mat-card>
         <mat-card>
             <mat-card-title>BCS Preparation Progress</mat-card-title>
         </mat-card>
-        
+        <mat-card (click)="onLogout()" *ngIf="userIsAuthenticated">
+            <mat-card-title>Logout</mat-card-title>
+        </mat-card>
     </div>
 </div>

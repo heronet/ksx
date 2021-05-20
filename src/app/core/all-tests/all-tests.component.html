@@ -1,8 +1,8 @@
 <div class="container">
     <div class="search">
         <form class="form" #f="ngForm">
-            <input placeholder="Model ID" type="text">
-            <input type="date">
+            <input placeholder="Model ID" type="text" name="testId" ngModel>
+            <input type="date" ngModel name="date">
             <select name="myRole" id="myRole" [ngModel]="myRoleKeys[0]">
                 <option *ngFor="let role of myRoleKeys" [value]="role">{{role}}</option>
             </select>
@@ -19,8 +19,11 @@
             <p>Total Marks: {{exam.totalMarks}}</p>
         </div>
     </div>
-    <div *ngIf="exams.length === 0 && !isLoading">
+    <div *ngIf="exams.length === 0 && !isLoading && (errors.length === 0)">
         <p style="font-size: 25px;">No Exams Yet</p>
+    </div>
+    <div *ngIf="errors.length > 0">
+        <p style="font-size: 25px;" *ngFor="let err of errors">{{err}}</p>
     </div>
     <div class="list" *ngIf="isLoading">
         <mat-spinner style="margin: 10px auto;"></mat-spinner>
