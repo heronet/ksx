@@ -1,11 +1,11 @@
-.form > input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px gray solid;
-}
-.form > button {
-    margin: 10px 5px;
-}
+// .form > input {
+//     padding: 10px;
+//     border-radius: 5px;
+//     border: 1px gray solid;
+// }
+// .form > button {
+//     margin: 10px 5px;
+// }
 mat-toolbar {
     width: 100%;
     background-color: #240090;
@@ -16,4 +16,10 @@ mat-toolbar {
     /* Sets the sticky toolbar to be on top */
     z-index: 1000;
     /* Ensure that your app's content doesn't overlap the toolbar */
+}
+.home {
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    user-select: none;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Exam, Question } from 'src/app/models/Exam';
+import { QuestionOption } from 'src/app/models/QuestionOption';
 import { ExamService } from 'src/app/services/exam.service';
 
 @Component({
@@ -35,7 +36,13 @@ export class CreateTestComponent implements OnInit {
   };
   duration_keys = [];
   questions = {
-    0 : {}
+    0 : {
+      0: {text: '',hasMath: false},
+      1: {text: '',hasMath: false},
+      2: {text: '',hasMath: false},
+      3: {text: '',hasMath: false},
+      hasMath: false
+    }
   };
   questions_keys = [];
   ca_indexes = [1, 2, 3, 4];
@@ -49,16 +56,25 @@ export class CreateTestComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.isLoading = true;
     const exam = this.buildExam(form.value);
+    console.log(exam);
     this.examService.createExam(exam).subscribe(res => {
       this.isLoading = false;
       this.router.navigateByUrl("all-tests");
     }, err => {
+      console.log(err);
+      
       this.isLoading = false;
     })
   }
   addQuestion() {
     let index = this.questions_keys.length
-    this.questions[index] = {};
+    this.questions[index] = {
+      0: {text: '',hasMath: false},
+      1: {text: '',hasMath: false},
+      2: {text: '',hasMath: false},
+      3: {text: '',hasMath: false},
+      hasMath: false
+    };
     this.questions_keys = Object.keys(this.questions);
   }
   removeQuestion() {
@@ -78,7 +94,7 @@ export class CreateTestComponent implements OnInit {
     let valid_questions: Partial<Question>[] = [];
     this.questions_keys.forEach(index => {
       const temp_question = this.questions[index];
-      const options: string[] = [
+      const options: QuestionOption[] = [
         temp_question[0],
         temp_question[1],
         temp_question[2],
@@ -99,6 +115,12 @@ export class CreateTestComponent implements OnInit {
         questions: valid_questions
     }
     return exam;
+  }
+
+  // Checkboxes
+  questionCheck() {
+    console.log(this.questions);
+    
   }
 
 }

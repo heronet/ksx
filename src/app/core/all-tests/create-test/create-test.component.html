@@ -12,40 +12,57 @@
         <div class="questions" style="padding: 0;">
             <button (click)="addQuestion()" type="button" mat-raised-button color="primary">Add more questions</button>
             <button (click)="removeQuestion()" type="button" mat-raised-button color="warn">Remove Last question</button>
+            <div style="margin: 10px 0;">Note: Check the boxes to include Math Symbols</div>
             <div class="question" *ngFor="let number of questions_keys;">
+                <mat-checkbox color="primary" (change)="questions[number]['hasMath']=$event.checked"></mat-checkbox>
                 <input type="text" name="{{'question' + number}}" [(ngModel)]="questions[number]['title']" [placeholder]="'Question ' + increaseOne(number)" required>
                 <span 
                     [mathjax]="[questions[number]['title']]" 
-                    *ngIf="questions[number]['title']" 
+                    *ngIf="questions[number]['title'] && questions[number]['hasMath']" 
                     style="font-size: 20px; margin: 10px 0;">
                     {{+number + 1}}. \( {{ '{}' }} \)
                 </span>
                 <div class="options">
-                    <input type="text" [(ngModel)]="questions[number][0]"  placeholder="Option 1" name="option{{number}},1" required>
+                    <div class="option">
+                        <mat-checkbox (change)="questions[number][0]['hasMath']=$event.checked"></mat-checkbox>
+                        <input type="text" [(ngModel)]="questions[number][0]['text']"  placeholder="Option 1" name="option{{number}},1" required>
+                    </div>
                     <span 
-                        [mathjax]="[questions[number][0]]" 
-                        *ngIf="questions[number][0]" 
+                        [mathjax]="[questions[number][0]['text']]"
+                        *ngIf="questions[number][0]['text'] && questions[number][0]['hasMath']"
                         style="font-size: 13px; margin: 5px 0;">
                         1. \( {{ '{}' }} \)
                     </span>
-                    <input type="text" [(ngModel)]="questions[number][1]"  placeholder="Option 2" name="option{{number}},2" required>
+
+                    <div class="option">
+                        <mat-checkbox (change)="questions[number][1]['hasMath']=$event.checked"></mat-checkbox>
+                        <input type="text" [(ngModel)]="questions[number][1]['text']"  placeholder="Option 2" name="option{{number}},2" required>
+                    </div>
                     <span 
-                        [mathjax]="[questions[number][1]]" 
-                        *ngIf="questions[number][1]" 
+                        [mathjax]="[questions[number][1]['text']]" 
+                        *ngIf="questions[number][1]['text'] && questions[number][1]['hasMath']" 
                         style="font-size: 13px; margin: 5px 0;">
                         2. \( {{ '{}' }} \)
                     </span>
-                    <input type="text" [(ngModel)]="questions[number][2]"  placeholder="Option 3" name="option{{number}},3" required>
+
+                    <div class="option">
+                        <mat-checkbox (change)="questions[number][2]['hasMath']=$event.checked"></mat-checkbox>
+                        <input type="text" [(ngModel)]="questions[number][2]['text']"  placeholder="Option 3" name="option{{number}},3" required>
+                    </div>
                     <span 
-                        [mathjax]="[questions[number][2]]" 
-                        *ngIf="questions[number][2]" 
+                        [mathjax]="[questions[number][2]['text']]" 
+                        *ngIf="questions[number][2]['text'] && questions[number][2]['hasMath']" 
                         style="font-size: 13px; margin: 5px 0;">
                         3. \( {{ '{}' }} \)
                     </span>
-                    <input type="text" [(ngModel)]="questions[number][3]"  placeholder="Option 4" name="option{{number}},4" required>
+
+                    <div class="option">
+                        <mat-checkbox (change)="questions[number][3]['hasMath']=$event.checked"></mat-checkbox>
+                        <input type="text" [(ngModel)]="questions[number][3]['text']"  placeholder="Option 4" name="option{{number}},4" required>
+                    </div>
                     <span 
-                        [mathjax]="[questions[number][3]]" 
-                        *ngIf="questions[number][3]" 
+                        [mathjax]="[questions[number][3]['text']]" 
+                        *ngIf="questions[number][3]['text'] && questions[number][3]['hasMath']" 
                         style="font-size: 13px; margin: 5px 0;">
                         4. \( {{ '{}' }} \)
                     </span>

@@ -51,7 +51,7 @@ export class TestBoardComponent implements OnInit {
     })
   }
   itemSelected(option: string, questionIndex: number) {
-    this.exam.questions[questionIndex].providedAnswer = option.trim();
+    this.exam.questions[questionIndex].providedAnswer.text = option.trim();
   }
   onSubmit() {
     this.isLoading = true;

@@ -9,32 +9,36 @@
             <p mat-card-subtitle>Created By: {{exam.creator}} </p>
         </div>
         <button *ngIf="!examRunning && isAuthenticated && !examSubmitted" mat-raised-button color="primary" style="margin-top: 5px; width: 100%;" (click)="onStart()">Click to Start</button>
-        <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated">You have already completed this exam with marks {{exam.marksObtained}}</p>
+        <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated" style="text-align: center;">You have already completed this exam with marks</p>
+        <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated" style="font-size: 25px;" [style]="exam.marksObtained > 0 ? 'color: limegreen':'color: brown'"> {{exam.marksObtained}}</p>
         <div class="questions" *ngIf="isAuthenticated && examRunning">
             <div class="question" *ngFor="let question of exam.questions; let i = index;">
                 <p [mathjax]="[question.title]">{{i + 1}}. \( {{ '{}' }} \)</p>
                 <div class="options">
-                    <p 
+                    <div 
                       class="option" 
                       *ngFor="let option of question.options;"
-                      [mathjax]="[option]" 
-                      (click)="itemSelected(option, i)" 
-                      [ngClass]="question.providedAnswer === option ? 'selected': ''">\( {{ '{}' }} \)</p>
+                      (click)="itemSelected(option.text, i)"
+                      [ngClass]="question.providedAnswer.text === option.text ? 'selected': ''">
+                      <p *ngIf="option.hasMath" [mathjax]="[option.text]">\( {{ '{}' }} \)</p>
+                      <p *ngIf="!option.hasMath">{{option.text}}</p>
+                    </div>
                 </div>
             </div>
         </div>
         <p class="marks" *ngIf="!examRunning && isAuthenticated &&  newSubmission">Your Score is: {{exam.marksObtained}}</p>
         <div class="questions" *ngIf="!examRunning && isAuthenticated &&  newSubmission">
             <div class="question" *ngFor="let question of exam.questions; let i = index;">
-                <p [mathjax]="[question.title]">\( {{ '{}' }} \)</p>
+                <p [mathjax]="[question.title]">{{i + 1}}. \( {{ '{}' }} \)</p>
                 <div class="options">
-                    <p 
+                    <div 
                       class="option" *ngFor="let option of question.options;"
-                      [mathjax]="[option]" 
-                      [ngClass]="[(question.correctAnswer === option ) ? 'opt-correct': '', question.providedAnswer === option ? 'incorrect': '']"
-                    >\( {{ '{}' }} \)</p>
+                      [ngClass]="[(question.correctAnswer.text === option.text) ? 'opt-correct': '', question.providedAnswer.text === option.text ? 'incorrect': '']">
+                      <p *ngIf="option.hasMath" [mathjax]="[option.text]">\( {{ '{}' }} \)</p>
+                      <p *ngIf="!option.hasMath">{{option.text}}</p>
+                    </div>
                 </div>
-                <p style="margin-top: 0; margin-bottom: 20px;">Score: {{(question.providedAnswer === question.correctAnswer) ? (question.marks + '/' + question.marks): ('0/' + question.marks)}}</p>
+                <p style="margin-top: 0; margin-bottom: 20px;">Score: {{(question.providedAnswer.text === question.correctAnswer.text) ? (question.marks + '/' + question.marks): ('0/' + question.marks)}}</p>
             </div>
         </div>
     </div>

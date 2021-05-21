@@ -41,6 +41,9 @@
 label {
     margin-left: 5px;
 }
+.option {
+  display: inline-block;
+}
 .questions > button {
   margin-right: 5px;
 }
@@ -49,8 +52,10 @@ label {
 }
 .question>input,
 .options>input,
+.option>input,
 .question-extras>input {
   padding: 5px;
+  margin-right: 5px;
   border-radius: 5px;
   border: none;
   border: 2px solid royalblue;
@@ -62,12 +67,14 @@ label {
   border: none;
   border: 2px solid royalblue;
 }
-
-
 form>.validation {
   color: #f44336;
   text-align: center;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin: 5px;
   padding: 5px;
+}
+mat-checkbox {
+  margin: 5px;
+  margin-left: 0;
 }

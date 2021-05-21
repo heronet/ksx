@@ -53,7 +53,7 @@ export class AllTestsComponent implements OnInit {
     }, err => {
       if(typeof(err.error) == 'string')
         this.errors.push(err.error);
-      else if(typeof(err.error) == 'object') {
+      else if(typeof(err.error) == 'object' && err.error.errors) {
         const errors = Object.values(err.error.errors);
         errors.forEach((errArray: []) => {
           errArray.forEach(err => {

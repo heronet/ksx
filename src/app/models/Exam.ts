@@ -1,10 +1,12 @@
+import { QuestionOption } from "./QuestionOption";
+
 export interface Question {
   id: string;
   title: string;
-  options: string[];
+  options: QuestionOption[];
   marks: number;
-  correctAnswer: string;
-  providedAnswer: string;
+  correctAnswer: QuestionOption;
+  providedAnswer: QuestionOption;
 }
 
 export interface Exam {
