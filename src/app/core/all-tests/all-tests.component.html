@@ -28,4 +28,12 @@
     <div class="list" *ngIf="isLoading">
         <mat-spinner style="margin: 10px auto;"></mat-spinner>
     </div>
+    
 </div>
+<mat-paginator
+    color="warn"
+    (page)="paginatorReload($event)"
+    [length]="examsCount"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
