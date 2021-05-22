@@ -18,6 +18,7 @@ import { TestBoardComponent } from './core/all-tests/test-board/test-board.compo
 import { CreateTestComponent } from './core/all-tests/create-test/create-test.component';
 import { TokenInterceptor } from './utils/token.interceptor';
 import { MathJaxModule } from 'ngx-mathjax';
+import { NgxPrintModule } from 'ngx-print';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MathJaxModule } from 'ngx-mathjax';
     FormsModule,
     MaterialModule,
     HttpClientModule,
+    NgxPrintModule,
     MathJaxModule.forRoot({
       version: '2.7.5',
       config: 'TeX-MML-AM_CHTML',

@@ -22,10 +22,11 @@
     border: 2px solid royalblue;
 }
 .title {
-    margin: 10px;
+    margin: 0;
+    font: 4em sans-serif;
 }
 .question > p {
-    margin: 10px;
+    margin: 0 10px;
     font-size: 20px;
 }
 .options {
@@ -67,8 +68,10 @@
     justify-content: center;
 }
 p {
-    color: #fff;
-    margin-bottom: 5px;
+    margin: 0 0 5px 0;
+}
+.question-title {
+    color: inherit; // Helps while printing
 }
 @media only screen and (min-width: 600px) {
   .options>.option {
