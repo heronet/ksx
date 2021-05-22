@@ -31,6 +31,7 @@
     
 </div>
 <mat-paginator
+    [style]="(isLoading || exams.length === 0) ? 'display: none': ''"
     color="warn"
     (page)="paginatorReload($event)"
     [length]="examsCount"
