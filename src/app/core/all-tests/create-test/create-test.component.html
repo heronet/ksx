@@ -9,6 +9,10 @@
             <option value="" disabled selected>Select exam duration</option>
             <option *ngFor="let duration of duration_keys" [value]="duration">{{duration}}</option>
         </select>
+        <select ngModel name="negative" id="negative" required>
+            <option value="" disabled selected>Select Negative Marks</option>
+            <option *ngFor="let mark of negativeMarks" [value]="mark">{{mark}}</option>
+        </select>
         <div class="questions" style="padding: 0;">
             <button (click)="addQuestion()" type="button" mat-raised-button color="primary">Add more questions</button>
             <button (click)="removeQuestion()" type="button" mat-raised-button color="warn">Remove Last question</button>

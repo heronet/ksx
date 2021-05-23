@@ -57,6 +57,7 @@ export class CreateTestComponent implements OnInit {
   };
   questions_keys = [];
   ca_indexes = [1, 2, 3, 4];
+  negativeMarks = [0.25, 0.5, 0.75, 1];
 
   constructor(private examService: ExamService, private router: Router) { }
 
@@ -101,6 +102,9 @@ export class CreateTestComponent implements OnInit {
     let title = value.title;
     let duration = this.durations[value.duration];
     let subject = value.subject;
+    let negativeMark = value.negative;
+    console.log(negativeMark);
+    
     let valid_questions: Partial<Question>[] = [];
     this.questions_keys.forEach(index => {
       const temp_question = this.questions[index];
@@ -123,8 +127,11 @@ export class CreateTestComponent implements OnInit {
         title,
         duration,
         subject,
-        questions: valid_questions
+        questions: valid_questions,
+        negativeMarks: +negativeMark
     }
+    console.log(exam);
+    
     return exam;
   }
 

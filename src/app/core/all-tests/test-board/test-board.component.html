@@ -5,6 +5,7 @@
         <div class="header">
             <p class="title" >{{exam.title}}</p>
             <p >Total Marks: {{exam.totalMarks}}</p>
+            <p >Negative Marks: {{exam.negativeMarks}}</p>
             <p >Time: {{exam.duration / 60}} minutes</p>
             <p *ngIf="examRunning">Time Remaining: {{timeString}} minutes</p>
             <p>Created By: {{exam.creator}} </p>
@@ -12,7 +13,7 @@
         
         <button *ngIf="!examRunning && isAuthenticated && !examSubmitted" mat-raised-button color="primary" style="margin-top: 5px; width: 100%;" (click)="onStart()">Click to Start</button>
         <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated" style="text-align: center;">You have already completed this exam with marks</p>
-        <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated" style="font-size: 25px;" [style]="exam.marksObtained > 0 ? 'color: limegreen':'color: brown'"> {{exam.marksObtained}}</p>
+        <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated" style="font-size: 25px;" [style]="exam.marksObtained >= 1 ? 'color: limegreen':'color: brown'"> {{exam.marksObtained}}</p>
         <div class="questions" *ngIf="isAuthenticated && examRunning">
             <div class="question" *ngFor="let question of exam.questions; let i = index;">
                 <p [mathjax]="[question.title]" *ngIf="question.hasMath" class="question-title" style="margin: 5px;">{{i + 1}}. \( {{ '{}' }} \)</p>
@@ -30,6 +31,7 @@
             </div>
         </div>
         <p class="marks" *ngIf="!examRunning && isAuthenticated &&  newSubmission">Your Score is: {{exam.marksObtained}}</p>
+        <p class="marks" *ngIf="!examRunning && isAuthenticated &&  newSubmission">Negative Marks: {{exam.negativeMarks}}</p>
         <div class="questions" *ngIf="!examRunning && isAuthenticated && newSubmission">
             <div class="question" *ngFor="let question of exam.questions; let i = index;">
                 <p [mathjax]="[question.title]" *ngIf="question.hasMath" class="question-title" style="margin: 5px;">{{i + 1}}. \( {{ '{}' }} \)</p>

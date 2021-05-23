@@ -24,4 +24,5 @@ export interface Exam {
   marksObtained: number;
   newSubmission: boolean;
   participated: boolean;
+  negativeMarks: number;
 }
