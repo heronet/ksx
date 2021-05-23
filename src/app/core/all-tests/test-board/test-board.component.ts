@@ -73,11 +73,15 @@ export class TestBoardComponent implements OnInit, OnDestroy {
   }
   onStart() {
     this.examRunning = true;
+    const localExamId = localStorage.getItem('examId');
+    if(localExamId != this.exam.id)
+      localStorage.removeItem("examTimeRemaining");
     const timeRemaining = localStorage.getItem('examTimeRemaining');
     if(timeRemaining) {
       this.time = parseInt(timeRemaining);
     } else {
       this.time = this.exam.duration;
+      localStorage.setItem('examId', this.exam.id);
     }
     this.timer = setInterval(() => {
       --this.time;
@@ -97,7 +101,8 @@ export class TestBoardComponent implements OnInit, OnDestroy {
     this.timeString = minutes + ":" + seconds;
   }
   ngOnDestroy() {
-    localStorage.removeItem("examTimeRemaining");
+    clearTimeout(this.timeout);
+    clearInterval(this.timer);
   }
 
 }
