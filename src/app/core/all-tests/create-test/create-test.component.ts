@@ -13,7 +13,6 @@ import { ExamService } from 'src/app/services/exam.service';
 export class CreateTestComponent implements OnInit {
   // UI Stuff
   isLoading = false;
-  
   // LogicStuff
   subjects = [
     "English",
@@ -23,7 +22,19 @@ export class CreateTestComponent implements OnInit {
     "Math",
     "ICT",
     "Bangla",
-    "Multiple"
+    "Bangla Shahitto",
+    "English Literature",
+    "Geography",
+    "Critical Reasoning",
+    "Math Reasoning",
+    "Noitikota O Mullobodh",
+    "Science",
+    "Sushasan",
+    "Bangladesh Affairs",
+    "International Affairs",
+    "Mental Efficiency",
+    "Computer And IT",
+    "Multiple Subjects"
   ];
   durations = {
     "5 minutes": 5 * 60,

@@ -22,6 +22,7 @@ export class AllTestsComponent implements OnInit {
     testId: "",
     date: null,
     myRole: "",
+    subject: "",
     pageSize: this.pageSize,
     pageCount: this.pageCount
   };
@@ -33,12 +34,44 @@ export class AllTestsComponent implements OnInit {
     'Participated By Me': 'participient', 
     'Created By Me': 'creator'
   };
+  selectedSubjectInit = "All";
+  caregorySubjects: {Academic: string[], BCS: string[]} = {
+    "Academic": [
+      "All Subjects",
+      "English",
+      "Physics",
+      "Chemistry",
+      "Biology",
+      "Math",
+      "ICT",
+      "Bangla",
+      "Multiple Subjects"
+    ],
+    "BCS": [
+      "All Subjects",
+      "Bangla Shahitto",
+      "English Literature",
+      "Geography",
+      "Critical Reasoning",
+      "Math Reasoning",
+      "Noitikota O Mullobodh",
+      "Science",
+      "Sushasan",
+      "Bangladesh Affairs",
+      "International Affairs",
+      "Mental Efficiency",
+      "Computer And IT",
+      "Multiple Subjects"
+    ]
+  };
   myRoleKeys: string[] = [];
+  categoryKeys: string[] = [];
   
   constructor(private examService: ExamService) { }
 
   ngOnInit(): void {
     this.myRoleKeys = Object.keys(this.myRoles);
+    this.categoryKeys = Object.keys(this.caregorySubjects);
     this.fetchExams(this.searchQuery);
   }
   onSubmit(form: NgForm) {
@@ -47,7 +80,8 @@ export class AllTestsComponent implements OnInit {
       date: form.value.date,
       myRole: this.myRoles[form.value.myRole],
       pageSize: this.pageSize,
-      pageCount: this.pageCount
+      pageCount: this.pageCount,
+      subject: form.value.subjectName === "All Subjects" ? '' : form.value.subjectName
     };
     this.searchQuery = query;
     const myRole = query.myRole;
@@ -55,7 +89,7 @@ export class AllTestsComponent implements OnInit {
       this.showObtainedMarks = true;
     else
       this.showObtainedMarks = false;
-    this.fetchExams(query); 
+    this.fetchExams(query);
   }
 
   fetchExams(query: SearchQuery) {

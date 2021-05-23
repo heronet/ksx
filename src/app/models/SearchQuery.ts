@@ -4,4 +4,5 @@ export interface SearchQuery {
     myRole: string;
     pageSize: number;
     pageCount: number;
+    subject: string;
 }

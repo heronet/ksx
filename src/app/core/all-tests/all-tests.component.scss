@@ -18,6 +18,9 @@
 .form>input, .form>select {
   border: 2px solid royalblue;
 }
+.form>input {
+  width: inherit;
+}
 .form>button {
   color: #fff;
   background-color: #240090;
