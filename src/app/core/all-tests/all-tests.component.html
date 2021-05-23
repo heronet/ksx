@@ -11,7 +11,7 @@
             <select name="subjectName" id="subjectName" [ngModel]="caregorySubjects[categoryKeys[0]][0]">
                 <option *ngFor="let subjectName of caregorySubjects[cat.value]" [value]="subjectName">{{subjectName}}</option>
             </select>
-            <input type="date" ngModel name="date" placeholder="Date">
+            <input type="date" ngModel name="date">
             <button type="submit" (click)="onSubmit(f)">Search</button>
         </form>
     </div>

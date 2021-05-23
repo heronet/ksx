@@ -16,7 +16,7 @@
         <div class="questions" style="padding: 0;">
             <button (click)="addQuestion()" type="button" mat-raised-button color="primary">Add more questions</button>
             <button (click)="removeQuestion()" type="button" mat-raised-button color="warn">Remove Last question</button>
-            <div style="margin: 10px 0;">Note: Check the boxes to include Math Symbols</div>
+            <div class="note">Note: Check the boxes to include Math Symbols</div>
             <div class="question" *ngFor="let number of questions_keys;">
                 <mat-checkbox color="primary" (change)="questions[number]['hasMath']=$event.checked"></mat-checkbox>
                 <input type="text" name="{{'question' + number}}" [(ngModel)]="questions[number]['title']" [placeholder]="'Question ' + increaseOne(number)" required>
@@ -72,11 +72,15 @@
                     </span>
                 </div>
                 <div class="question-extras">
+                    <span style="margin-left: 20px;"></span>
                     <input type="number" name="mark{{number}}" [(ngModel)]="questions[number]['marks']" placeholder="Marks" required>
-                    <label>Select correct option: </label>
-                    <select [(ngModel)]="questions[number]['ca_index']" [name]="'ca_number' + number" [id]="'ca_number' + number" required>
-                        <option *ngFor="let index of ca_indexes" [value]="index - 1">{{index}}</option>
-                    </select>
+                    <div>
+                        <span style="margin-left: 15px;"></span>
+                        <label class="correct-label">Select correct option: </label>
+                        <select [(ngModel)]="questions[number]['ca_index']" [name]="'ca_number' + number" [id]="'ca_number' + number" required>
+                            <option *ngFor="let index of ca_indexes" [value]="index - 1">{{index}}</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>

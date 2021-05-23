@@ -61,11 +61,17 @@ label {
   border: 2px solid royalblue;
 }
 
-.question>.question-extras>select {
-  margin: 5px 0;
-  border-radius: 2px;
+.question>.question-extras>div>select {
+  margin: 5px;
+  padding: 3px;
+  border-radius: 5px;
   border: none;
   border: 2px solid royalblue;
+}
+.correct-label {
+  background-color: #240090;
+  padding: 5px;
+  border-radius: 5px;
 }
 form>.validation {
   color: #f44336;
@@ -73,6 +79,15 @@ form>.validation {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   margin: 5px;
   padding: 5px;
+}
+.note {
+  margin: 10px 0;
+  background-color: #f44336;
+  padding: 5px;
+  border-radius: 5px;
+}
+.note > span {
+  margin: 0 auto;
 }
 mat-checkbox {
   margin: 5px;
