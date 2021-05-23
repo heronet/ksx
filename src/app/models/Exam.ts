@@ -7,6 +7,7 @@ export interface Question {
   marks: number;
   correctAnswer: QuestionOption;
   providedAnswer: QuestionOption;
+  hasMath: boolean;
 }
 
 export interface Exam {

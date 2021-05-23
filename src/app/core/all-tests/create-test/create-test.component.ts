@@ -56,7 +56,6 @@ export class CreateTestComponent implements OnInit {
   onSubmit(form: NgForm) {
     this.isLoading = true;
     const exam = this.buildExam(form.value);
-    console.log(exam);
     this.examService.createExam(exam).subscribe(res => {
       this.isLoading = false;
       this.router.navigateByUrl("all-tests");
@@ -104,7 +103,8 @@ export class CreateTestComponent implements OnInit {
         title: temp_question.title,
         correctAnswer: temp_question[temp_question.ca_index],
         options: options,
-        marks: temp_question.marks
+        marks: temp_question.marks,
+        hasMath: temp_question.hasMath
       }
       valid_questions.push(question);
     });

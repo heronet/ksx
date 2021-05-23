@@ -15,7 +15,8 @@
         <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated" style="font-size: 25px;" [style]="exam.marksObtained > 0 ? 'color: limegreen':'color: brown'"> {{exam.marksObtained}}</p>
         <div class="questions" *ngIf="isAuthenticated && examRunning">
             <div class="question" *ngFor="let question of exam.questions; let i = index;">
-                <p [mathjax]="[question.title]" class="question-title" style="margin: 5px;">{{i + 1}}. \( {{ '{}' }} \)</p>
+                <p [mathjax]="[question.title]" *ngIf="question.hasMath" class="question-title" style="margin: 5px;">{{i + 1}}. \( {{ '{}' }} \)</p>
+                <p class="question-title" *ngIf="!question.hasMath" style="margin: 5px;">{{i + 1}}. {{question.title}}</p>
                 <div class="options">
                     <div 
                       class="option" 
@@ -31,7 +32,8 @@
         <p class="marks" *ngIf="!examRunning && isAuthenticated &&  newSubmission">Your Score is: {{exam.marksObtained}}</p>
         <div class="questions" *ngIf="!examRunning && isAuthenticated && newSubmission">
             <div class="question" *ngFor="let question of exam.questions; let i = index;">
-                <p [mathjax]="[question.title]" class="question-title" style="margin: 5px;">{{i + 1}}. \( {{ '{}' }} \)</p>
+                <p [mathjax]="[question.title]" *ngIf="question.hasMath" class="question-title" style="margin: 5px;">{{i + 1}}. \( {{ '{}' }} \)</p>
+                <p class="question-title" *ngIf="!question.hasMath" style="margin: 5px;">{{i + 1}}. {{question.title}}</p>
                 <div class="options">
                     <div 
                       class="option" *ngFor="let option of question.options;"
