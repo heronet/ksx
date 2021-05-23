@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { ActivatedRoute } from '@angular/router';
 import { Exam } from 'src/app/models/Exam';
@@ -10,7 +10,7 @@ import { ExamService } from 'src/app/services/exam.service';
   templateUrl: './test-board.component.html',
   styleUrls: ['./test-board.component.scss']
 })
-export class TestBoardComponent implements OnInit {
+export class TestBoardComponent implements OnInit, OnDestroy {
   // UI Stuff
   isLoading = false;
   isAuthenticated = false;
@@ -64,21 +64,29 @@ export class TestBoardComponent implements OnInit {
       this.examSubmitted = true;
       this.newSubmission = res.newSubmission;
       this.exam = res;
+      localStorage.removeItem("examTimeRemaining");
     }, err => {
       this.isLoading = false;
       console.log(err);
+      localStorage.removeItem("examTimeRemaining");
     });
   }
   onStart() {
     this.examRunning = true;
-    this.time = this.exam.duration;
+    const timeRemaining = localStorage.getItem('examTimeRemaining');
+    if(timeRemaining) {
+      this.time = parseInt(timeRemaining);
+    } else {
+      this.time = this.exam.duration;
+    }
     this.timer = setInterval(() => {
       --this.time;
+      localStorage.setItem('examTimeRemaining', this.time.toString());
       this.setTime();
     }, 1000)
     this.timeout = setTimeout(() => {
       this.onSubmit();
-    }, this.exam.duration * 1000);
+    }, this.time * 1000);
   }
   setTime() {
     let minutes: string | number = Math.floor(this.time / 60);
@@ -87,6 +95,9 @@ export class TestBoardComponent implements OnInit {
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
     this.timeString = minutes + ":" + seconds;
+  }
+  ngOnDestroy() {
+    localStorage.removeItem("examTimeRemaining");
   }
 
 }
