@@ -40,6 +40,9 @@ export class ExamService {
   createExam(exam: Partial<Exam>) {
     return this.http.post(`${this.BASE_URL}/exam/create`, exam);
   }
+  updateExam(id: string, exam: Partial<Exam>) {
+    return this.http.put(`${this.BASE_URL}/exam/${id}`, exam);
+  }
   deleteExam(id: string) {
     return this.http.delete(`${this.BASE_URL}/exam/${id}`);
   }

@@ -8,6 +8,7 @@ import { TestBoardComponent } from './core/all-tests/test-board/test-board.compo
 import { DashboardComponent } from './core/dashboard/dashboard.component';
 import { CreateTestComponent } from './core/all-tests/create-test/create-test.component';
 import { SecurityGuard } from './guards/security.guard';
+import { EditComponent } from './core/all-tests/edit/edit.component';
 
 const routes: Routes = [
   {path: "", component: DashboardComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: "register", component: RegisterComponent, canActivate: [AuthGuard]},
   {path: "all-tests", component: AllTestsComponent},
   {path: "all-tests/create", component: CreateTestComponent, canActivate: [SecurityGuard]},
+  {path: "all-tests/edit/:id", component: EditComponent},
   {path: "all-tests/:id", component: TestBoardComponent},
 ];
 

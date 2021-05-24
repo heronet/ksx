@@ -1,0 +1,59 @@
+<div class="container">
+  <form class="form" #f="ngForm" (ngSubmit)="onSave(f)" *ngIf="!isLoading && isCreator && exam">
+    <input type="text" name="title" [(ngModel)]="exam.title" placeholder="Title" required>
+    <select ngModel name="subject" id="subject" required>
+      <option value="" disabled selected>Select a subject</option>
+      <option *ngFor="let subject of subjects" [value]="subject">{{subject}}</option>
+    </select>
+    <select ngModel name="duration" id="duration" required>
+      <option value="" disabled selected>Select exam duration</option>
+      <option *ngFor="let duration of duration_keys" [value]="duration">{{duration}}</option>
+    </select>
+    <select ngModel name="negative" id="negative" required>
+      <option value="" disabled selected>Select Negative Marks</option>
+      <option *ngFor="let mark of negativeMarks" [value]="mark">{{mark}}</option>
+    </select>
+    <div class="questions" style="padding: 0;">
+      <div class="note">Note: Check the boxes to include Math Symbols</div>
+      <div class="question" *ngFor="let question of exam.questions; let i = index;">
+        <p>Question: {{+i+1}}</p>
+        <mat-checkbox color="primary" [(ngModel)]="question['hasMath']" (change)="question['hasMath']=$event.checked" name="check{{i}}">
+        </mat-checkbox>
+        <input type="text" name="{{'question' + i}}" [(ngModel)]="question['title']" placeholder="Question {{+i}}"
+          required>
+        <span [mathjax]="[question['title']]" *ngIf="question['title'] && question['hasMath']"
+          style="font-size: 20px; margin: 10px 0;">
+          {{+i + 1}}. \( {{ '{}' }} \)
+        </span>
+        <div class="options">
+          <ng-container *ngFor="let option of question.options; let j = index;">
+            <div class="option">
+              <mat-checkbox (change)="option['hasMath']=$event.checked"></mat-checkbox>
+              <input type="text" [(ngModel)]="option['text']" placeholder="Option 1" name="option{{+i}},{{j}}" required>
+            </div>
+            <span [mathjax]="[option['text']]" *ngIf="option['text'] && option['hasMath']"
+              style="font-size: 13px; margin: 5px 0;">
+              1. \( {{ '{}' }} \)
+            </span>
+          </ng-container>
+        </div>
+        <div class="question-extras">
+          <div>
+            <span style="margin-left: 15px;"></span>
+            <label class="correct-label">Correct Answer: </label>
+            <input [(ngModel)]="question.correctAnswer.text" [name]="'ca_number' + i" [id]="'ca_number' + i"
+              required />
+          </div>
+          <div>
+            <span style="margin-left: 20px;" class="correct-label">Marks: </span>
+            <input type="number" name="mark{{+i}}" [(ngModel)]="question['marks']" placeholder="Marks" required>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <button type="submit" [disabled]="f.invalid" *ngIf="!isLoading">Update</button>
+  </form>
+  <div *ngIf="!isLoading && !isCreator">You Cannot modify the questions.</div>
+  <mat-spinner style="margin-top: 30vh;" *ngIf="isLoading"></mat-spinner>
+</div>
