@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Exam } from '../models/Exam';
+import { Exam, Participant } from '../models/Exam';
 import { SearchQuery } from '../models/SearchQuery';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class ExamService {
 
   constructor(private http: HttpClient) { }
 
-  getAllExam(query: SearchQuery) {
+  getAllExam(query: Partial<SearchQuery>) {
     if(query.testId)
       return this.http.get<{exams: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?testId=${query.testId}&pageSize=${query.pageSize}&pageCount=${query.pageCount}`);
     if(query.date) {
@@ -51,5 +51,11 @@ export class ExamService {
   }
   toggleSubmission(id: string) {
     return this.http.patch<boolean>(`${this.BASE_URL}/exam/${id}`, {});
+  }
+  removeParticipant(id: string, participantId: string) {
+    return this.http.delete(`${this.BASE_URL}/exam/participants/${id}?participantId=${participantId}`);
+  }
+  getParticipants(id: string) {
+    return this.http.get<Participant[]>(`${this.BASE_URL}/exam/participants/${id}`);
   }
 }

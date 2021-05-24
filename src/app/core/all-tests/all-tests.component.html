@@ -18,7 +18,7 @@
 
     <div class="list" *ngIf="!isLoading && exams.length > 0">
         <div class="list-item" *ngFor="let exam of exams" [routerLink]="['/all-tests', exam.id]">
-            <span>{{exam.title}}</span>|<span>Subject: {{exam.subject}}</span>|<span class="tag">Paid</span>
+            <span>{{exam.title}}</span>|<span>Subject: {{exam.subject}}</span>|<span class="tag">FREE</span>
             <p>{{exam.createdAt | date: 'medium'}}</p>
             <p *ngIf="showObtainedMarks">Marks Obtained: {{exam.marksObtained}}</p>
             <p>Attendees: {{exam.attendees}}</p>

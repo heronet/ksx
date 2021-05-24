@@ -26,4 +26,11 @@ export interface Exam {
   participated: boolean;
   negativeMarks: number;
   submissionEnabled: boolean;
+  participants: Participant[];
+}
+export interface Participant {
+  id: string;
+  username: string;
+  marksObtained: number;
+  examCreatorId: string;
 }

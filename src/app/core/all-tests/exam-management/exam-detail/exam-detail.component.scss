@@ -1,0 +1,29 @@
+.container {
+  color: #fff;
+}
+
+.list-item {
+  background-color: royalblue;
+  color: #fff;
+  margin: 5px;
+  cursor: pointer;
+  display: flex;
+  padding: 5px;
+}
+
+.list-item>div>p {
+  margin: 5px;
+}
+
+button {
+  margin: 0 5px;
+}
+
+.mat-card:hover {
+  box-shadow: 0 8px 8px 8px rgba(243, 68, 91, 0.2),
+    0 8px 8px 0 rgba(243, 68, 68, 0.2),
+    0 8px 8px 0 rgba(68, 164, 243, 0.2) !important;
+  transform: translate3d(0, 0, 0);
+  transition: background .4s cubic-bezier(.25, .8, .25, 1),
+    box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+}

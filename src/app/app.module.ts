@@ -21,6 +21,8 @@ import { MathJaxModule } from 'ngx-mathjax';
 import { NgxPrintModule } from 'ngx-print';
 import { PromptComponent } from './core/prompt/prompt.component';
 import { EditComponent } from './core/all-tests/edit/edit.component';
+import { ExamManagementComponent } from './core/all-tests/exam-management/exam-management.component';
+import { ExamDetailComponent } from './core/all-tests/exam-management/exam-detail/exam-detail.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { EditComponent } from './core/all-tests/edit/edit.component';
     CreateTestComponent,
     PromptComponent,
     EditComponent,
+    ExamManagementComponent,
+    ExamDetailComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="list" *ngIf="participants.length > 0 && !isLoading">
+        <mat-card class="list-item" *ngFor="let participant of participants; let i = index;">
+            <div>
+                <p>User: {{participant.username}}</p>
+                <p>Marks Obtained: {{participant.marksObtained}}</p>
+            </div>
+            <span style="flex: 1 1 auto;"></span>
+            <button (click)="onClearSubmission(participant.id, i)" mat-raised-button color="warn" *ngIf="participant.examCreatorId === userId">Clear Submission</button>
+        </mat-card>
+    </div>
+    <div *ngIf="participants.length === 0 && !isLoading && (errors.length === 0)">
+        <p style="font-size: 25px; text-align: center; margin: 20px;">No Participant Yet</p>
+    </div>
+    <div *ngIf="errors.length > 0">
+        <p style="font-size: 25px; text-align: center; margin: 20px;" *ngFor="let err of errors">{{err}}</p>
+    </div>
+    <mat-spinner *ngIf="isLoading" style="margin: 10px auto;" [diameter]="40"></mat-spinner>
+</div>

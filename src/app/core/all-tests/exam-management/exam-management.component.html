@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="list" *ngIf="exams.length > 0 && !isLoading">
+        <mat-card class="list-item" *ngFor="let exam of exams; let i = index;">
+            <div  [routerLink]="['/all-tests/manage', exam.id]">
+                <p>{{exam.title}}</p>
+                <p>{{exam.createdAt | date: 'medium'}}</p>
+            </div>
+            <span style="flex: 1 1 auto;"></span>
+            <button (click)="onToggleExam(exam.id, i)" mat-raised-button color="primary" *ngIf="!exam.submissionEnabled && !isActivateLoading">Activate</button>
+            <button (click)="onToggleExam(exam.id, i)" mat-raised-button color="warn" *ngIf="exam.submissionEnabled && !isActivateLoading">Deactivate</button>
+            <mat-spinner [diameter]="55" color="accent" *ngIf="isActivateLoading && activateIndex === i" style="margin: 0 10px;"></mat-spinner>
+
+            <button [routerLink]="['/all-tests/edit', exam.id]" mat-raised-button color="accent">Edit</button>
+            <mat-spinner [diameter]="55" color="accent" *ngIf="isDeleteLoading && activateIndex === i" style="margin: 0 10px;"></mat-spinner>
+            <button (click)="onDelete(exam.id, i)" mat-raised-button color="warn" *ngIf="!isDeleteLoading">Delete</button>
+        </mat-card>
+    </div>
+    <div *ngIf="exams.length === 0 && !isLoading && (errors.length === 0)">
+        <p style="font-size: 25px; text-align: center; margin: 20px;">No Exams Yet</p>
+    </div>
+    <div *ngIf="errors.length > 0">
+        <p style="font-size: 25px; text-align: center; margin: 20px;" *ngFor="let err of errors">{{err}}</p>
+    </div>
+    <mat-spinner *ngIf="isLoading" style="margin: 10px auto;" [diameter]="40"></mat-spinner>
+</div>
+<mat-paginator
+    [style]="(isLoading || exams.length === 0) ? 'display: none': ''"
+    color="warn"
+    (page)="paginatorReload($event)"
+    [length]="examsCount"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
