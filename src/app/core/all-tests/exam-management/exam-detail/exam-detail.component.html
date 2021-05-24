@@ -1,9 +1,10 @@
 <div class="container">
     <div class="list" *ngIf="participants.length > 0 && !isLoading">
+        <mat-card class="title">Manage Submissions</mat-card>
         <mat-card class="list-item" *ngFor="let participant of participants; let i = index;">
             <div>
-                <p>User: {{participant.username}}</p>
-                <p>Marks Obtained: {{participant.marksObtained}}</p>
+                <p mat-card-title>User: {{participant.username}}</p>
+                <p mat-card-content>Marks Obtained: {{participant.marksObtained}}</p>
             </div>
             <span style="flex: 1 1 auto;"></span>
             <button (click)="onClearSubmission(participant.id, i)" mat-raised-button color="warn" *ngIf="participant.examCreatorId === userId">Clear Submission</button>

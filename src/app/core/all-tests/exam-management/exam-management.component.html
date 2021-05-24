@@ -1,11 +1,13 @@
 <div class="container">
     <div class="list" *ngIf="exams.length > 0 && !isLoading">
+        <mat-card class="title">Manage Exams</mat-card>
         <mat-card class="list-item" *ngFor="let exam of exams; let i = index;">
-            <div  [routerLink]="['/all-tests/manage', exam.id]">
-                <p>{{exam.title}}</p>
-                <p>{{exam.createdAt | date: 'medium'}}</p>
+            <div [routerLink]="['/all-tests/manage', exam.id]">
+                <p mat-card-title>{{exam.title}}</p>
+                <p mat-card-content>{{exam.createdAt | date: 'medium'}}</p>
             </div>
             <span style="flex: 1 1 auto;"></span>
+            <button [routerLink]="['/all-tests/manage', exam.id]" mat-raised-button color="accent" >Submissions</button>
             <button (click)="onToggleExam(exam.id, i)" mat-raised-button color="primary" *ngIf="!exam.submissionEnabled && !isActivateLoading">Activate</button>
             <button (click)="onToggleExam(exam.id, i)" mat-raised-button color="warn" *ngIf="exam.submissionEnabled && !isActivateLoading">Deactivate</button>
             <mat-spinner [diameter]="55" color="accent" *ngIf="isActivateLoading && activateIndex === i" style="margin: 0 10px;"></mat-spinner>
