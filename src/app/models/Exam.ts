@@ -25,4 +25,5 @@ export interface Exam {
   newSubmission: boolean;
   participated: boolean;
   negativeMarks: number;
+  submissionEnabled: boolean;
 }

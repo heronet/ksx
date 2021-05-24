@@ -11,13 +11,16 @@
             <p>Created By: {{exam.creator}} </p>
         </div>
         
-        <button *ngIf="!examRunning && isAuthenticated && !examSubmitted" mat-raised-button color="primary" style="margin-top: 5px; width: 100%;" (click)="onStart()">Click to Start</button>
+        <button *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.submissionEnabled" mat-raised-button color="primary" style="margin-top: 5px; width: 100%;" (click)="onStart()">Click to Start</button>
         <div class="editable" *ngIf="isCreator && !examRunning && isAuthenticated && !examSubmitted">
-            <button mat-raised-button color="accent" style="margin: 5px 5px 0 0; width: 50%;" [routerLink]="['/all-tests/edit', exam.id]">Edit</button>
-            <button mat-raised-button color="warn" style="margin-top: 5px; width: 50%;" (click)="onDelete()">Delete</button>
+            <button mat-raised-button color="accent" style="margin: 5px 5px 0 0; width: 20%;" [routerLink]="['/all-tests/edit', exam.id]">Edit</button>
+            <button mat-raised-button color="warn" style="margin-top: 5px; width: 60%;" (click)="onDelete()">Delete</button>
+            <button mat-raised-button color="accent" style="margin: 5px 0 0 5px; width: 20%;" (click)="onChangeSubmission()" *ngIf="!exam.submissionEnabled">Enable Submission</button>
+            <button mat-raised-button color="accent" style="margin: 5px 0 0 5px; width: 20%;" (click)="onChangeSubmission()" *ngIf="exam.submissionEnabled">Disable Submission</button>
         </div>
         <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated" style="text-align: center;">You have already completed this exam with marks</p>
         <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated" style="font-size: 25px;" [style]="exam.marksObtained >= 1 ? 'color: limegreen':'color: brown'"> {{exam.marksObtained}}</p>
+        <p class="marks" *ngIf="errorMessage"> {{errorMessage}}</p>
         <div class="questions" *ngIf="isAuthenticated && examRunning">
             <div class="question" *ngFor="let question of exam.questions; let i = index;">
                 <p [mathjax]="[question.title]" *ngIf="question.hasMath" class="question-title" style="margin: 5px;">{{i + 1}}. \( {{ '{}' }} \)</p>

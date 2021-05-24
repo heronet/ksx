@@ -49,4 +49,7 @@ export class ExamService {
   submitExam(exam: Partial<Exam>) {
     return this.http.post<Partial<Exam>>(`${this.BASE_URL}/exam/submit`, exam);
   }
+  toggleSubmission(id: string) {
+    return this.http.patch<boolean>(`${this.BASE_URL}/exam/${id}`, {});
+  }
 }

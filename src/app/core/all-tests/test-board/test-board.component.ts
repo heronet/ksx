@@ -16,6 +16,7 @@ export class TestBoardComponent implements OnInit, OnDestroy {
   isLoading = false;
   isAuthenticated = false;
   examRunning = false;
+  errorMessage = "";
   timeout: any;
   timer: any;
   time: number;
@@ -75,7 +76,7 @@ export class TestBoardComponent implements OnInit, OnDestroy {
       localStorage.removeItem("examTimeRemaining");
     }, err => {
       this.isLoading = false;
-      console.log(err);
+      this.errorMessage = err.error;
       localStorage.removeItem("examTimeRemaining");
     });
   }
@@ -115,8 +116,10 @@ export class TestBoardComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onEdit() {
-
+  onChangeSubmission() {
+    this.examService.toggleSubmission(this.exam.id).subscribe(res => {
+      this.exam.submissionEnabled = res;
+    })
   }
   setTime() {
     let minutes: string | number = Math.floor(this.time / 60);
