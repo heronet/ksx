@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatButton } from '@angular/material/button';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Exam } from 'src/app/models/Exam';
 import { AuthService } from 'src/app/services/auth.service';
 import { ExamService } from 'src/app/services/exam.service';
+import { PromptComponent } from '../../prompt/prompt.component';
 
 @Component({
   selector: 'app-test-board',
@@ -21,20 +22,25 @@ export class TestBoardComponent implements OnInit, OnDestroy {
   timeString: string;
   examSubmitted = false;
   newSubmission = false;
+  isCreator = false;
   // Logic
   exam: Partial<Exam> = null;
   answers: string[] = [];
+  userId: string;
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
+    private router: Router,
     private examService: ExamService,
-    private authService: AuthService
+    private authService: AuthService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.authService.authenticatedUser$.subscribe(authData => {
       if(authData != null) {
         this.isAuthenticated = true;
+        this.userId = authData.id;
       } else {
         this.isAuthenticated = false;
       }
@@ -45,6 +51,8 @@ export class TestBoardComponent implements OnInit, OnDestroy {
       this.isLoading = true;
       this.examService.getExam(id).subscribe((exam) => {
       this.exam = exam;
+      if(exam.creatorId === this.userId)
+        this.isCreator = true;
       this.isLoading = false;
     }, err => {
       console.log(err);
@@ -91,6 +99,24 @@ export class TestBoardComponent implements OnInit, OnDestroy {
     this.timeout = setTimeout(() => {
       this.onSubmit();
     }, this.time * 1000);
+  }
+  onDelete() {
+    const dialogRef = this.dialog.open(PromptComponent, {data: this.exam.title});
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.isLoading = true;
+        this.examService.deleteExam(this.exam.id).subscribe(() => {
+          this.isLoading = false;
+          this.router.navigateByUrl('/all-tests');
+        }, err => {
+          console.log(err);
+          this.isLoading = false;
+        });
+      }
+    });
+  }
+  onEdit() {
+
   }
   setTime() {
     let minutes: string | number = Math.floor(this.time / 60);

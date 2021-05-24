@@ -12,6 +12,10 @@
         </div>
         
         <button *ngIf="!examRunning && isAuthenticated && !examSubmitted" mat-raised-button color="primary" style="margin-top: 5px; width: 100%;" (click)="onStart()">Click to Start</button>
+        <div class="editable" *ngIf="isCreator && !examRunning && isAuthenticated && !examSubmitted">
+            <button mat-raised-button color="accent" style="margin: 5px 5px 0 0; width: 50%;" (click)="onEdit()">Edit</button>
+            <button mat-raised-button color="warn" style="margin-top: 5px; width: 50%;" (click)="onDelete()">Delete</button>
+        </div>
         <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated" style="text-align: center;">You have already completed this exam with marks</p>
         <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated" style="font-size: 25px;" [style]="exam.marksObtained >= 1 ? 'color: limegreen':'color: brown'"> {{exam.marksObtained}}</p>
         <div class="questions" *ngIf="isAuthenticated && examRunning">

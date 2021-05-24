@@ -19,6 +19,7 @@ import { CreateTestComponent } from './core/all-tests/create-test/create-test.co
 import { TokenInterceptor } from './utils/token.interceptor';
 import { MathJaxModule } from 'ngx-mathjax';
 import { NgxPrintModule } from 'ngx-print';
+import { PromptComponent } from './core/prompt/prompt.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { NgxPrintModule } from 'ngx-print';
     AllTestsComponent,
     TestBoardComponent,
     CreateTestComponent,
+    PromptComponent,
   ],
   imports: [
     BrowserModule,

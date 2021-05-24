@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card'
 import { MatListModule } from '@angular/material/list'
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatPaginatorModule } from '@angular/material/paginator'
+import { MatDialogModule } from '@angular/material/dialog'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
     MatListModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ],
   exports: [
     MatSidenavModule,
@@ -31,6 +33,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
     MatListModule,
     MatCheckboxModule,
     MatPaginatorModule,
+    MatDialogModule,
     MatProgressSpinnerModule
   ]
 })
