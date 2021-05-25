@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Participant } from 'src/app/models/Exam';
 import { AuthService } from 'src/app/services/auth.service';
 import { ExamService } from 'src/app/services/exam.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-exam-detail',
@@ -19,6 +20,9 @@ export class ExamDetailComponent implements OnInit, OnDestroy {
 
   authSubscription: Subscription;
   userId: string;
+
+  excelHeaders: string[] = ['Name', 'Marks Obtained'];
+  excelRows: string[][] = [this.excelHeaders];
 
   constructor(
     private route: ActivatedRoute,
@@ -71,5 +75,18 @@ export class ExamDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.authSubscription.unsubscribe();
   }
+  exportTemplateAsExcel()
+  {
+    this.participants.forEach(part => {
+      const row = [part.username, part.marksObtained.toString()];
+      this.excelRows.push(row);
+    })
+    const ws: XLSX.WorkSheet=XLSX.utils.aoa_to_sheet(this.excelRows);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.writeFile(wb, this.examId + ".xlsx");
+  }
+  
 
 }

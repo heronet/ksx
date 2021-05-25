@@ -7,14 +7,16 @@
                 <p mat-card-content>{{exam.createdAt | date: 'medium'}}</p>
             </div>
             <span style="flex: 1 1 auto;"></span>
-            <button [routerLink]="['/all-tests/manage', exam.id]" mat-raised-button color="accent" >Submissions</button>
-            <button (click)="onToggleExam(exam.id, i)" mat-raised-button color="primary" *ngIf="!exam.submissionEnabled && !isActivateLoading">Activate</button>
-            <button (click)="onToggleExam(exam.id, i)" mat-raised-button color="warn" *ngIf="exam.submissionEnabled && !isActivateLoading">Deactivate</button>
-            <mat-spinner [diameter]="55" color="accent" *ngIf="isActivateLoading && activateIndex === i" style="margin: 0 10px;"></mat-spinner>
+            <div class="btn-group">
+                <button (click)="onToggleExam(exam.id, i)" mat-raised-button color="primary" *ngIf="!exam.submissionEnabled && !isActivateLoading">Activate</button>
+                <button (click)="onToggleExam(exam.id, i)" mat-raised-button color="warn" *ngIf="exam.submissionEnabled && !isActivateLoading">Deactivate</button>
+                <mat-spinner [diameter]="55" color="accent" *ngIf="isActivateLoading && activateIndex === i" style="margin: 0 10px;"></mat-spinner>
 
-            <button [routerLink]="['/all-tests/edit', exam.id]" mat-raised-button color="accent">Edit</button>
-            <mat-spinner [diameter]="55" color="accent" *ngIf="isDeleteLoading && activateIndex === i" style="margin: 0 10px;"></mat-spinner>
-            <button (click)="onDelete(exam.id, i)" mat-raised-button color="warn" *ngIf="!isDeleteLoading">Delete</button>
+                <button [routerLink]="['/all-tests/edit', exam.id]" mat-raised-button color="accent">Edit</button>
+                <mat-spinner [diameter]="55" color="accent" *ngIf="isDeleteLoading && activateIndex === i" style="margin: 0 10px;"></mat-spinner>
+                <button (click)="onDelete(exam.id, i)" mat-raised-button color="warn" *ngIf="!isDeleteLoading">Delete</button>
+                <button [routerLink]="['/all-tests/manage', exam.id]" mat-raised-button color="accent" >Submissions</button>
+            </div>
         </mat-card>
     </div>
     <div *ngIf="exams.length === 0 && !isLoading && (errors.length === 0)">
