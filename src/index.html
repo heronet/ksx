@@ -12,5 +12,14 @@
 </head>
 <body class="mat-typography">
   <app-root></app-root>
+  <script>
+     window.addEventListener('load', function () {
+      MathJax.Hub.Config({
+        CommonHTML: {
+          mtextFontInherit: true
+        }
+      });
+    });
+  </script>
 </body>
 </html>

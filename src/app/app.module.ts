@@ -52,7 +52,7 @@ import { ExamDetailComponent } from './core/all-tests/exam-management/exam-detai
     MathJaxModule.forRoot({
       version: '2.7.5',
       config: 'TeX-MML-AM_CHTML',
-      hostname: 'cdnjs.cloudflare.com'
+      hostname: 'cdnjs.cloudflare.com',
     })
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
