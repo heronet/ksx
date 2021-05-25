@@ -37,11 +37,11 @@ export class AppComponent implements OnInit, OnDestroy {
         this.authService.setUser(newAuthData);
       }, err => {
         this.isLoading = false;
+        this.router.navigateByUrl('/login')
         localStorage.removeItem('authData');
       })
     }else {
       this.isLoading = false;
-      this.authService.setUser(null);
     }
       
   }

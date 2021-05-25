@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AllTestsComponent } from './core/all-tests/all-tests.component';
@@ -14,8 +13,8 @@ import { ExamDetailComponent } from './core/all-tests/exam-management/exam-detai
 
 const routes: Routes = [
   {path: "", component: DashboardComponent},
-  {path: "login", component: LoginComponent, canActivate: [AuthGuard]},
-  {path: "register", component: RegisterComponent, canActivate: [AuthGuard]},
+  {path: "login", component: LoginComponent},
+  {path: "register", component: RegisterComponent},
   {path: "all-tests", component: AllTestsComponent},
   {path: "all-tests/create", component: CreateTestComponent, canActivate: [SecurityGuard]},
   {path: "all-tests/manage", component: ExamManagementComponent, canActivate: [SecurityGuard]},
@@ -27,6 +26,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard, SecurityGuard]
+  providers: [SecurityGuard]
 })
 export class AppRoutingModule { }

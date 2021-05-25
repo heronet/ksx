@@ -89,6 +89,12 @@ export class EditComponent implements OnInit {
     this.exam.subject = form.value.subject.trim();
     this.exam.duration = this.durations[form.value.duration];
     this.exam.negativeMarks = +form.value.negative;
+    this.exam.questions.forEach(qu => {
+      qu.options.forEach(op => {
+        if(op.text === qu.correctAnswer.text)
+          qu.correctAnswer.hasMath = op.hasMath;
+      });
+    });
     
     this.examService.updateExam(this.exam.id, this.exam).subscribe(res => {
       this.isLoading = false;
