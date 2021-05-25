@@ -18,8 +18,8 @@
             <button (click)="removeQuestion()" type="button" mat-raised-button color="warn">Remove Last question</button>
             <div class="note">Note: Check the boxes to include Math Symbols</div>
             <div class="question" *ngFor="let number of questions_keys;">
-                <mat-checkbox color="primary" (change)="questions[number]['hasMath']=$event.checked"></mat-checkbox>
-                <input type="text" name="{{'question' + number}}" [(ngModel)]="questions[number]['title']" [placeholder]="'Question ' + increaseOne(number)" required>
+                <mat-checkbox color="primary" (change)="questions[number]['hasMath']=$event.checked" style="transform: translatey(-85%)"></mat-checkbox>
+                <textarea type="text" name="{{'question' + number}}" [(ngModel)]="questions[number]['title']" [placeholder]="'Question ' + increaseOne(number)" required></textarea>
                 <span 
                     [mathjax]="[questions[number]['title']]" 
                     *ngIf="questions[number]['title'] && questions[number]['hasMath']" 

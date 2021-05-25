@@ -41,9 +41,9 @@
 label {
     margin-left: 5px;
 }
-.option {
-  display: inline-block;
-}
+// .option {
+//   display: inline-block;
+// }
 .questions > button {
   margin-right: 5px;
 }
@@ -51,6 +51,7 @@ label {
   margin: 10px 0 0 0;
 }
 .question>input,
+.question>textarea,
 .options>input,
 .option>input,
 .question-extras>input {

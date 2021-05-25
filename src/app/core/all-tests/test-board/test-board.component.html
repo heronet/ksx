@@ -24,7 +24,7 @@
         <div class="questions" *ngIf="isAuthenticated && examRunning">
             <div class="question" *ngFor="let question of exam.questions; let i = index;">
                 <p [mathjax]="[question.title]" *ngIf="question.hasMath" class="question-title" style="margin: 5px;">{{i + 1}}. \( {{ '{}' }} \)</p>
-                <p class="question-title" *ngIf="!question.hasMath" style="margin: 5px;">{{i + 1}}. {{question.title}}</p>
+                <p class="question-title" *ngIf="!question.hasMath" style="margin: 10px;">{{i + 1}}. {{question.title}}</p>
                 <div class="options">
                     <div 
                       class="option" 
@@ -42,7 +42,7 @@
         <div class="questions" *ngIf="!examRunning && isAuthenticated && newSubmission">
             <div class="question" *ngFor="let question of exam.questions; let i = index;">
                 <p [mathjax]="[question.title]" *ngIf="question.hasMath" class="question-title" style="margin: 5px;">{{i + 1}}. \( {{ '{}' }} \)</p>
-                <p class="question-title" *ngIf="!question.hasMath" style="margin: 5px;">{{i + 1}}. {{question.title}}</p>
+                <p class="question-title" *ngIf="!question.hasMath" style="margin: 10px;">{{i + 1}}. {{question.title}}</p>
                 <div class="options">
                     <div 
                       class="option" *ngFor="let option of question.options;"
