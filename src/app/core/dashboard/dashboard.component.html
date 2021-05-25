@@ -1,21 +1,40 @@
-<div>
-    <mat-card class="ad"><button mat-raised-button color="warn" style="width: 100%; display: block;" routerLink="/all-tests">View All Model Test</button></mat-card>
+<div class="container">
+    <mat-card class="ad"><button mat-raised-button color="warn" style="width: 100%;" routerLink="/all-tests">View All Model Test</button></mat-card>
     <div class="card-container">
         <mat-card routerLink="/all-tests/create">
-            <mat-card-title>Create Model Test</mat-card-title>
+            <p>Create Model Test</p>
         </mat-card>
         <mat-card *ngIf="!userIsAuthenticated">
-            <mat-card-title routerLink="/register">Sign Up</mat-card-title>
+            <p routerLink="/register">Sign Up</p>
         </mat-card>
         <mat-card routerLink="/login" *ngIf="!userIsAuthenticated">
-            <mat-card-title>Login</mat-card-title>
+            <p>Login</p>
         </mat-card>
-        
         <mat-card routerLink="/all-tests">
-            <mat-card-title>Participate in Model Test</mat-card-title>
+            <p>Participate in Model Test</p>
         </mat-card>
         <mat-card (click)="onLogout()" *ngIf="userIsAuthenticated">
-            <mat-card-title>Logout</mat-card-title>
+            <p>Logout</p>
         </mat-card>
+    </div>
+    <div class="description">
+        <p class="title">Welcome to MCQ</p>
+        <div class="content">
+                <p style="text-align: center; font-size: 20px; margin: 10px;">কেন আপনি মডেল টেস্ট তৈরি করবেন?</p>
+                <ol>
+                    <li style="text-decoration: line-through;">সব গুলো ফিচারই পাচ্ছেন ফ্রি-তে।</li>
+                    <li>খুব সহজে প্রশ্ন যোগ করা, এডিট ও ডিলিট করতে পারবেন।</li>
+                    <li>উন্মুক্ত পরীক্ষার লিংক</li>
+                    <li>সবচেয়ে গুরুত্বপূর্ণ ফিচার হলো সমন্বিত মেধা তালিকা অটোমেটিক্যালি প্রস্তুত হয়ে যাবে।</li>
+                    <li>কোন প্রশ্ন যোগ না করেই আপনার পরীক্ষার লিংকটি শিক্ষার্থীদের মাঝে শেয়ার করতে পারবেন। এরপর সময় করে আস্তে আস্তে প্রশ্নগুলো যোগ করতে পারবেন।</li>
+                    <li>আপনার পরীক্ষাটির একটা নির্দিষ্ট আইডি থাকবে। শুধুমাত্র এই আইডি জানলেই যে কেউ সহজে পরীক্ষাটি খুজে পাবে ও অংশগ্রহন করতে পারবে।</li>
+                    <li>আপনি নেগেটিভ মার্ক যুক্ত করতে পারবেন, ফলে ভুল হলে নেগেটিভ মার্ক বাদে ফলাফল সিটটি তৈরি হবে।</li>
+                    <li>আপনি ফলাফল সিটটি এক ক্লিকে ডাউনলোড করতে পারবেন অফিস ওয়ার্ডে।</li>
+                    <li>পরীক্ষা দেওয়ার পর শিক্ষার্থীরা সাথে সাথে তাদের মেরিট পজিশন জানতে পারবে, কতটি ভুল, কতটি সঠিক এবং সম্পূর্ণ উত্তরপত্র পেয়ে যাবে।</li>
+                    <li>আপনি চাইলে যে কোন সময় পরীক্ষাটি বন্ধ করে রাখতে পারবেন।</li>
+                    <li>No Useless features.</li>
+                    <li>Everything that you need. But nothing more.</li>
+                </ol>
+        </div>
     </div>
 </div>

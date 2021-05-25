@@ -17,6 +17,9 @@
     align-items: center;
     border: 2px solid royalblue;
 }
+.header > * { 
+    text-align: center;
+}
 .board > .questions {
     margin-top: 5px;
     border: 2px solid royalblue;
@@ -80,10 +83,19 @@ p {
 }
 .editable > * {
     flex-grow: 1;
-    margin: 5px;
+    margin: 5px 5px 5px 0;
 }
 @media only screen and (min-width: 600px) {
   .options>.option {
     font-size: 16px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .editable {
+    flex-direction: column;
+  }
+
+  .editable>* {
+    margin: 5px 0 0 0;
   }
 }

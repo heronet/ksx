@@ -1,6 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AuthData } from 'src/app/models/AuthData';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent implements OnInit, OnDestroy {
   // UI Stuff
   @Output() sidenavItemClicked = new EventEmitter<void>();
 
@@ -20,7 +19,7 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit(): void {
     this.authSubscription = this.authService.authenticatedUser$.subscribe(authData => {
-      if(authData != null) {
+      if(authData) {
         this.userIsAuthenticated = true;
       } else
         this.userIsAuthenticated = false;
@@ -29,7 +28,10 @@ export class SidenavComponent implements OnInit {
   }
   onLogout() {
     this.authService.logout();
+  }
+  ngOnDestroy() {
     this.authSubscription.unsubscribe();
   }
+
 
 }

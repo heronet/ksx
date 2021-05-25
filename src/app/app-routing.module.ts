@@ -12,7 +12,7 @@ import { ExamManagementComponent } from './core/all-tests/exam-management/exam-m
 import { ExamDetailComponent } from './core/all-tests/exam-management/exam-detail/exam-detail.component';
 
 const routes: Routes = [
-  {path: "", component: DashboardComponent},
+  {path: "", component: DashboardComponent, pathMatch: 'full'},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
   {path: "all-tests", component: AllTestsComponent},
@@ -21,6 +21,7 @@ const routes: Routes = [
   {path: "all-tests/manage/:id", component: ExamDetailComponent, canActivate: [SecurityGuard]},
   {path: "all-tests/edit/:id", component: EditComponent},
   {path: "all-tests/:id", component: TestBoardComponent},
+  {path: '*', component: AllTestsComponent}
 ];
 
 @NgModule({

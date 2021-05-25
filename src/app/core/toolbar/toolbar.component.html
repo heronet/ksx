@@ -3,7 +3,8 @@
         <input type="text" name="modelId" id="modelId" placeholder="Model ID">
         <button mat-raised-button color="warn">Search</button>
     </form> -->
-    <a mat-button class="home" routerLink="/"><mat-icon>workspace_premium</mat-icon><span style="margin:0 5px;">MCQ</span></a>
-    <span style="flex: 1 1 auto;"></span>
+    <a mat-raised-button class="home" color="primary" routerLink="/"><mat-icon>workspace_premium</mat-icon><span style="margin:0 5px;">MCQ</span></a>
+    <a mat-raised-button class="home" routerLink="/all-tests" color="primary"><mat-icon>fact_check</mat-icon><span style="margin:0 5px;">All Tests</span></a>
+    <span class="spacer"></span>
     <button mat-icon-button (click)="onMenuClick()" style="color: #fff;"><mat-icon>menu</mat-icon></button>
 </mat-toolbar>

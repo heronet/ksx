@@ -22,4 +22,21 @@ mat-toolbar {
     font-size: 20px;
     cursor: pointer;
     user-select: none;
+    margin-right: 5px;
+}
+.spacer {
+    flex: 1 1 auto;
+}
+@media only screen and (max-width: 600px) {
+  .home {
+    font-size: 16px;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .spacer {
+    display: none;
+  }
+  .home {
+      flex-grow: 1;
+  }
 }

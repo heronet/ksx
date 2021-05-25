@@ -1,14 +1,24 @@
+.container {
+    width: 90vw;
+    margin: 0 auto;
+}
+
 .card-container {
     display: flex;
     flex-wrap: wrap
 }
 .card-container > mat-card {
     flex: 1 0 21%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 5px;
+    padding: 5px;
     text-align: center;
     background-color: #3500d3;
     color: #fff;
     cursor: pointer;
+    font-size: 20px;
     line-height: 25px;
 }
 .card-container > mat-card:hover {
@@ -17,5 +27,31 @@
 
 .ad {
     padding: 0;
+    margin: 10px 5px 5px 5px;
+}
+.description {
+    margin: 5px;
+    color: #fff;
+}
+.content {
+    border: #f44336 1px solid;
+}
+.content > ol > li {
+    font-size: 18px;
     margin: 10px;
+    line-height: 25px;
+}
+
+.title {
+    text-align: center;
+    background-color: #f44336;
+    padding: 10px;
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 0;
+}
+@media only screen and (min-width: 600px) {
+  .card-container > * {
+      font-size: 15px;
+  }
 }

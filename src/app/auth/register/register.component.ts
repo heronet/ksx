@@ -54,10 +54,7 @@ export class RegisterComponent implements OnInit {
     })
   }
   navigate() {
-    if(window.history.length > 2)
-      this.location.back(); // Only call back if uses came from another page of THIS site.
-    else
-    this.router.navigateByUrl("/all-tests"); // Go home if came from another website
+    this.router.navigateByUrl("/all-tests");
   }
 
 }
