@@ -16,7 +16,7 @@ export class AuthService {
   private oldTokenForInterceptor = new ReplaySubject<AuthData>(1);
   oldTokenForInterceptor$ = this.oldTokenForInterceptor.asObservable();
 
-  isAuthenticated: boolean;
+  isAuthenticated: boolean = false;;
 
   constructor(private http: HttpClient) { }
 
