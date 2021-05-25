@@ -24,6 +24,7 @@
 .title {
     margin: 0;
     font: 4em sans-serif;
+    text-align: center;
 }
 .question > p {
     margin: 0 10px;
@@ -75,6 +76,11 @@ p {
 }
 .editable {
     display: flex;
+    flex-wrap: wrap;
+}
+.editable > * {
+    flex-grow: 1;
+    margin: 5px;
 }
 @media only screen and (min-width: 600px) {
   .options>.option {

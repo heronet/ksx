@@ -4,6 +4,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <app-toolbar (menuClicked)="sidenav.toggle()"></app-toolbar>
-    <router-outlet></router-outlet>
+    <router-outlet *ngIf="!isLoading"></router-outlet>
+    <mat-spinner *ngIf="isLoading" style="margin: 20vw auto;"></mat-spinner>
   </mat-sidenav-content>
 </mat-sidenav-container>

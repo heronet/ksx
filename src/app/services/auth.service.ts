@@ -13,6 +13,9 @@ export class AuthService {
   BASE_URL = environment.BASE_URL;
   private authenticatedUserSource = new ReplaySubject<AuthData>(1); // Keeps track of user Authentication Status
   authenticatedUser$ = this.authenticatedUserSource.asObservable();
+  private oldTokenForInterceptor = new ReplaySubject<AuthData>(1);
+  oldTokenForInterceptor$ = this.oldTokenForInterceptor.asObservable();
+
   isAuthenticated: boolean;
 
   constructor(private http: HttpClient) { }
@@ -44,10 +47,20 @@ export class AuthService {
   }
   
   setUser(authData: AuthData) {
-    this.isAuthenticated = true
+    if(authData)
+      this.isAuthenticated = true;
+    else
+      this.isAuthenticated = false;
     this.authenticatedUserSource.next(authData);
   }
   getAuthStatus() {
     return this.isAuthenticated;
   }
+  refrestToken(authData: AuthData) {
+    return this.http.post<AuthData>(`${this.BASE_URL}/account/refresh`, authData);
+  }
+  emitOldAuthData(authData: AuthData) {
+    this.oldTokenForInterceptor.next(authData);
+  }
+  
 }

@@ -24,6 +24,15 @@ export class TokenInterceptor implements HttpInterceptor {
         })
       }
     });
+    this.authService.oldTokenForInterceptor$.pipe(take(1)).subscribe(authData => { // Onlu used for token refresh
+      if(authData) {
+        request = request.clone({
+          setHeaders: {
+            Authorization: `Bearer ${authData.token}`
+          }
+        })
+      }
+    });
     return next.handle(request);
   }
 }
