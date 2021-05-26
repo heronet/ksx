@@ -1,7 +1,7 @@
 <div class="container">
     <mat-card class="ad"><button mat-raised-button color="warn" style="width: 100%;" routerLink="/all-tests">View All Model Test</button></mat-card>
     <div class="card-container">
-        <mat-card routerLink="/all-tests/create">
+        <mat-card routerLink="/all-tests/create" *ngIf="userIsAuthenticated">
             <p>Create Model Test</p>
         </mat-card>
         <mat-card *ngIf="!userIsAuthenticated">

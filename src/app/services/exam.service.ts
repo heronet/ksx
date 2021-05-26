@@ -14,25 +14,25 @@ export class ExamService {
 
   getAllExam(query: Partial<SearchQuery>) {
     if(query.testId)
-      return this.http.get<{exams: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?testId=${query.testId}&pageSize=${query.pageSize}&pageCount=${query.pageCount}`);
+      return this.http.get<{data: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?testId=${query.testId}&pageSize=${query.pageSize}&pageCount=${query.pageCount}`);
     if(query.date) {
       if(query.myRole) {
         if(query.subject)
-          return this.http.get<{exams: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?myRole=${query.myRole}&date=${query.date}&pageSize=${query.pageSize}&pageCount=${query.pageCount}&subject=${query.subject}`);
-        return this.http.get<{exams: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?myRole=${query.myRole}&date=${query.date}&pageSize=${query.pageSize}&pageCount=${query.pageCount}`);
+          return this.http.get<{data: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?myRole=${query.myRole}&date=${query.date}&pageSize=${query.pageSize}&pageCount=${query.pageCount}&subject=${query.subject}`);
+        return this.http.get<{data: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?myRole=${query.myRole}&date=${query.date}&pageSize=${query.pageSize}&pageCount=${query.pageCount}`);
       }
       if(query.subject)
-        return this.http.get<{exams: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?date=${query.date}&pageSize=${query.pageSize}&pageCount=${query.pageCount}&subject=${query.subject}`);
-      return this.http.get<{exams: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?date=${query.date}&pageSize=${query.pageSize}&pageCount=${query.pageCount}`);
+        return this.http.get<{data: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?date=${query.date}&pageSize=${query.pageSize}&pageCount=${query.pageCount}&subject=${query.subject}`);
+      return this.http.get<{data: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?date=${query.date}&pageSize=${query.pageSize}&pageCount=${query.pageCount}`);
     }
     if(query.myRole) {
       if(query.subject)
-        return this.http.get<{exams: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?myRole=${query.myRole}&pageSize=${query.pageSize}&pageCount=${query.pageCount}&subject=${query.subject}`);
-      return this.http.get<{exams: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?myRole=${query.myRole}&pageSize=${query.pageSize}&pageCount=${query.pageCount}`);
+        return this.http.get<{data: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?myRole=${query.myRole}&pageSize=${query.pageSize}&pageCount=${query.pageCount}&subject=${query.subject}`);
+      return this.http.get<{data: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?myRole=${query.myRole}&pageSize=${query.pageSize}&pageCount=${query.pageCount}`);
     }
     if(query.subject)
-      return this.http.get<{exams: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?pageSize=${query.pageSize}&pageCount=${query.pageCount}&subject=${query.subject}`);
-    return this.http.get<{exams: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?pageSize=${query.pageSize}&pageCount=${query.pageCount}`);
+      return this.http.get<{data: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?pageSize=${query.pageSize}&pageCount=${query.pageCount}&subject=${query.subject}`);
+    return this.http.get<{data: Partial<Exam>[], size: number}>(`${this.BASE_URL}/exam/all?pageSize=${query.pageSize}&pageCount=${query.pageCount}`);
   }
   getExam(id: string) {
     return this.http.get<Partial<Exam>>(`${this.BASE_URL}/exam/${id}`);

@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="list" *ngIf="users.length > 0 && !isLoading">
+        <mat-card class="title">Manage Users</mat-card>
+        <mat-card class="list-item" *ngFor="let user of users; let i = index;">
+            <div>
+                <p mat-card-title>{{user.username}}</p>
+                <p mat-card-content>{{user.email}}</p>
+                <p mat-card-content>{{user.id}}</p>
+            </div>
+            <span style="flex: 1 1 auto;"></span>
+            <div class="btn-group">
+                <mat-spinner [diameter]="55" color="accent" *ngIf="isDeleteLoading && deleteIndex === i" style="margin: 0 10px;"></mat-spinner>
+                <button (click)="onDelete(user.id, i)" mat-raised-button color="warn" *ngIf="!isDeleteLoading">Delete</button>
+            </div>
+        </mat-card>
+    </div>
+    <div *ngIf="users.length === 0 && !isLoading && (errors.length === 0)">
+        <p style="font-size: 25px; text-align: center; margin: 20px;">No Users Yet</p>
+    </div>
+    <div *ngIf="errors.length > 0">
+        <p style="font-size: 25px; text-align: center; margin: 20px;" *ngFor="let err of errors">{{err}}</p>
+    </div>
+    <mat-spinner *ngIf="isLoading" style="margin: 10px auto;" [diameter]="40"></mat-spinner>
+</div>
+<mat-paginator
+    [style]="(isLoading || users.length === 0) ? 'display: none': ''"
+    color="warn"
+    (page)="paginatorReload($event)"
+    [length]="usersCount"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>

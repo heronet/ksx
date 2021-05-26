@@ -10,18 +10,23 @@ import { SecurityGuard } from './guards/security.guard';
 import { EditComponent } from './core/all-tests/edit/edit.component';
 import { ExamManagementComponent } from './core/all-tests/exam-management/exam-management.component';
 import { ExamDetailComponent } from './core/all-tests/exam-management/exam-detail/exam-detail.component';
+import { LoginGuard } from './guards/login.guard';
+import { ManageUsersComponent } from './core/admin/manage-users/manage-users.component';
+import { AdminComponent } from './core/admin/admin.component';
 
 const routes: Routes = [
   {path: "", component: DashboardComponent, pathMatch: 'full'},
-  {path: "login", component: LoginComponent},
-  {path: "register", component: RegisterComponent},
+  {path: "login", component: LoginComponent, canActivate: [LoginGuard]},
+  {path: "register", component: RegisterComponent, canActivate: [LoginGuard]},
   {path: "all-tests", component: AllTestsComponent},
   {path: "all-tests/create", component: CreateTestComponent, canActivate: [SecurityGuard]},
   {path: "all-tests/manage", component: ExamManagementComponent, canActivate: [SecurityGuard]},
   {path: "all-tests/manage/:id", component: ExamDetailComponent, canActivate: [SecurityGuard]},
   {path: "all-tests/edit/:id", component: EditComponent},
   {path: "all-tests/:id", component: TestBoardComponent},
-  {path: '*', component: AllTestsComponent}
+  {path: "admin", component: AdminComponent},
+  {path: "admin/manage-users", component: ManageUsersComponent},
+  {path: '**', component: DashboardComponent}
 ];
 
 @NgModule({

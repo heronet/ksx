@@ -14,15 +14,24 @@ export class SidenavComponent implements OnInit, OnDestroy {
   // Logic Stuff
   authSubscription: Subscription;
   userIsAuthenticated = false;
-
+  userIsAdmin = false;
+  username: string;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.authSubscription = this.authService.authenticatedUser$.subscribe(authData => {
       if(authData) {
         this.userIsAuthenticated = true;
-      } else
+        this.username = authData.username;
+        if(authData.roles[0] === 'Admin')
+          this.userIsAdmin = true;
+        else
+          this.userIsAdmin = false;
+      } else {
         this.userIsAuthenticated = false;
+        this.userIsAdmin = false;
+      }
+        
     })
     // this.userIsAuthenticated = this.authService.getAuthStatus();
   }

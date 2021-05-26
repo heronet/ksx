@@ -1,21 +1,25 @@
 .container {
-    color: #fff;
+  color: #fff;
 }
+
 .list-item {
-    background-color: rgba(68, 65, 225, 0.445);
-    color: #fff;
-    margin: 5px;
-    cursor: pointer;
-    display: flex;
-    padding: 5px;
+  background-color: rgba(68, 65, 225, 0.445);
+  color: #fff;
+  margin: 5px;
+  cursor: pointer;
+  display: flex;
+  padding: 5px;
 }
+
 .btn-group {
- display: flex;
- flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
-.btn-group > button {
+
+.btn-group>button {
   margin: 5px;
 }
+
 @media only screen and (max-width: 600px) {
   .list-item {
     cursor: pointer;
@@ -23,9 +27,11 @@
     padding: 5px;
   }
 }
-.list-item > div > p{
-    margin: 5px;
+
+.list-item>div>p {
+  margin: 5px;
 }
+
 .title {
   background-color: rgba(68, 65, 225, 0.445);
   color: #fff;
@@ -35,8 +41,9 @@
 }
 
 button {
-    margin: 0 5px;
+  margin: 0 5px;
 }
+
 .list-item:hover {
   box-shadow: 0 8px 8px 8px rgba(71, 68, 243, 0.2),
     0 8px 8px 0 rgba(68, 71, 243, 0.2),

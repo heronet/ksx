@@ -1,5 +1,8 @@
 <mat-nav-list (click)="sidenavItemClicked.emit()">
+    <p mat-list-item *ngIf="userIsAuthenticated && username">{{username}}</p>
+    <hr>
     <a mat-list-item routerLink=""><mat-icon>home</mat-icon><span>Home</span></a>
+    <a mat-list-item routerLink="/admin" *ngIf="userIsAuthenticated && userIsAdmin" ><mat-icon>admin_panel_settings</mat-icon><span>Admin Dashboard</span></a>
     <a mat-list-item routerLink="/all-tests"><mat-icon>description</mat-icon><span>All Tests</span></a>
     <a mat-list-item routerLink="/all-tests/manage" *ngIf="userIsAuthenticated"><mat-icon>fingerprint</mat-icon><span>Manage Tests</span></a>
     <a mat-list-item routerLink="/all-tests/create" *ngIf="userIsAuthenticated"><mat-icon>add_task</mat-icon><span>Create Test</span></a>

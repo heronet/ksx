@@ -23,6 +23,8 @@ import { PromptComponent } from './core/prompt/prompt.component';
 import { EditComponent } from './core/all-tests/edit/edit.component';
 import { ExamManagementComponent } from './core/all-tests/exam-management/exam-management.component';
 import { ExamDetailComponent } from './core/all-tests/exam-management/exam-detail/exam-detail.component';
+import { AdminComponent } from './core/admin/admin.component';
+import { ManageUsersComponent } from './core/admin/manage-users/manage-users.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { ExamDetailComponent } from './core/all-tests/exam-management/exam-detai
     EditComponent,
     ExamManagementComponent,
     ExamDetailComponent,
+    AdminComponent,
+    ManageUsersComponent,
   ],
   imports: [
     BrowserModule,

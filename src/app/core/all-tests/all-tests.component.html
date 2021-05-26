@@ -26,10 +26,10 @@
         </div>
     </div>
     <div *ngIf="exams.length === 0 && !isLoading && (errors.length === 0)">
-        <p style="font-size: 25px;">No Exams Yet</p>
+        <p style="font-size: 25px; margin: 10px;">No Exams Yet</p>
     </div>
     <div *ngIf="errors.length > 0">
-        <p style="font-size: 25px;" *ngFor="let err of errors">{{err}}</p>
+        <p style="font-size: 25px; margin: 10px;" *ngFor="let err of errors">{{err}}</p>
     </div>
     <div class="list" *ngIf="isLoading">
         <mat-spinner style="margin: 10px auto;"></mat-spinner>

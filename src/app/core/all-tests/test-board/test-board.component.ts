@@ -15,6 +15,7 @@ export class TestBoardComponent implements OnInit, OnDestroy {
   // UI Stuff
   isLoading = false;
   isAuthenticated = false;
+  isAdmin = false;
   examRunning = false;
   errorMessage = "";
   timeout: any;
@@ -24,6 +25,7 @@ export class TestBoardComponent implements OnInit, OnDestroy {
   examSubmitted = false;
   newSubmission = false;
   isCreator = false;
+  error: string;
   // Logic
   exam: Partial<Exam> = null;
   answers: string[] = [];
@@ -42,6 +44,10 @@ export class TestBoardComponent implements OnInit, OnDestroy {
       if(authData != null) {
         this.isAuthenticated = true;
         this.userId = authData.id;
+        if(authData.roles[0] === 'Admin')
+          this.isAdmin = true;
+        else
+          this.isAdmin = false;
       } else {
         this.isAuthenticated = false;
       }
@@ -52,11 +58,12 @@ export class TestBoardComponent implements OnInit, OnDestroy {
       this.isLoading = true;
       this.examService.getExam(id).subscribe((exam) => {
       this.exam = exam;
+      this.error = null;
       if(exam.creatorId === this.userId)
         this.isCreator = true;
       this.isLoading = false;
     }, err => {
-      console.log(err);
+      this.error = err.error;
       this.isLoading = false;
     })
   }

@@ -12,11 +12,11 @@
         </div>
         
         <button *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.submissionEnabled" mat-raised-button color="primary" style="margin-top: 5px; width: 100%;" (click)="onStart()">Click to Start</button>
-        <div class="editable" *ngIf="isCreator && !examRunning && isAuthenticated && !examSubmitted">
-            <button mat-raised-button color="primary"  [routerLink]="['/all-tests/edit', exam.id]">Edit</button>
-            <button mat-raised-button color="accent"  (click)="onChangeSubmission()" *ngIf="!exam.submissionEnabled">Enable Submission</button>
-            <button mat-raised-button color="accent" (click)="onChangeSubmission()" *ngIf="exam.submissionEnabled">Disable Submission</button>
-            <button style="margin-right: 0;" mat-raised-button color="warn" (click)="onDelete()">Delete</button>
+        <div class="editable" *ngIf="!examRunning && isAuthenticated && !examSubmitted">
+            <button *ngIf="isCreator" mat-raised-button color="primary"  [routerLink]="['/all-tests/edit', exam.id]">Edit</button>
+            <button mat-raised-button color="accent"  (click)="onChangeSubmission()" *ngIf="!exam.submissionEnabled && (isCreator || isAdmin)">Enable Submission</button>
+            <button mat-raised-button color="accent" (click)="onChangeSubmission()" *ngIf="exam.submissionEnabled && (isCreator || isAdmin)">Disable Submission</button>
+            <button style="margin-right: 0;" mat-raised-button color="warn" (click)="onDelete()" *ngIf="(isCreator || isAdmin)">Delete</button>
         </div>
         <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated" style="text-align: center;">You have already completed this exam with marks</p>
         <p class="marks" *ngIf="!examRunning && isAuthenticated && !examSubmitted && exam.participated" style="font-size: 25px;" [style]="exam.marksObtained >= 1 ? 'color: limegreen':'color: brown'"> {{exam.marksObtained}}</p>
@@ -57,4 +57,5 @@
     </div>
     <button *ngIf="!isLoading && examRunning" mat-raised-button color="primary" style="margin-top: 5px;" (click)="onSubmit()">Submit</button>
     <mat-spinner *ngIf="isLoading" [diameter]="50" style="margin: 30vw auto;"></mat-spinner>
+    <p *ngIf="error" style="font-size: 30px; text-align: center;margin: 30px;">{{error}}</p>
 </div>

@@ -16,7 +16,7 @@ export class AllTestsComponent implements OnInit {
   showObtainedMarks = false;
   errors: string[] = [];
   examsCount: number;
-  pageSize = 5;
+  pageSize = 10;
   pageCount= 1;
   searchQuery: SearchQuery = {
     testId: "",
@@ -96,7 +96,7 @@ export class AllTestsComponent implements OnInit {
     this.isLoading = true;
     this.errors = [];
     this.examService.getAllExam(query).subscribe(res => {
-      this.exams = res.exams;
+      this.exams = res.data;
       this.examsCount = res.size;
       this.isLoading = false;
     }, err => {

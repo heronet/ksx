@@ -21,7 +21,7 @@ export class ExamManagementComponent implements OnInit {
   // Logic
   exams: Partial<Exam>[] = [];
   examsCount: number;
-  pageSize = 5;
+  pageSize = 25;
   pageCount= 1;
   searchQuery: SearchQuery = {
     testId: "",
@@ -75,7 +75,7 @@ export class ExamManagementComponent implements OnInit {
     this.isLoading = true;
     this.errors = [];
     this.examService.getAllExam(query).subscribe(res => {
-      this.exams = res.exams;
+      this.exams = res.data;
       this.examsCount = res.size;
       this.isLoading = false;
     }, err => {
